@@ -12,10 +12,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  XCODE_VERSION: "16.2"
-  SIMULATOR_NAME: "iPhone 16"
-
 jobs:
   # ============================================================
   # ビルド & テスト
@@ -29,14 +25,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Select Xcode ${{ env.XCODE_VERSION }}
-        run: |
-          if [ -d "/Applications/Xcode_${{ env.XCODE_VERSION }}.app" ]; then
-            sudo xcode-select -s "/Applications/Xcode_${{ env.XCODE_VERSION }}.app/Contents/Developer"
-          else
-            echo "Xcode_${{ env.XCODE_VERSION }} not found, using default"
-          fi
-          xcodebuild -version
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Install tools
         run: |
@@ -45,9 +35,19 @@ jobs:
       - name: Generate Xcode project
         run: xcodegen generate
 
-      - name: Show available simulators
+      - name: Pick an available iPhone simulator
+        id: simulator
         run: |
-          xcrun simctl list devices available | grep -E "iPhone" | head -5
+          UDID=$(xcrun simctl list devices available -j \
+            | jq -r '[.devices | to_entries[] | select(.key | test("iOS")) | .value[] | select(.name | startswith("iPhone")) | .udid] | first')
+          if [ -z "$UDID" ] || [ "$UDID" = "null" ]; then
+            echo "::error::No iPhone simulator available"
+            xcrun simctl list devices available
+            exit 1
+          fi
+          NAME=$(xcrun simctl list devices -j | jq -r --arg udid "$UDID" '.devices | to_entries[] | .value[] | select(.udid == $udid) | .name')
+          echo "udid=$UDID" >> $GITHUB_OUTPUT
+          echo "::notice::Using simulator: $NAME ($UDID)"
 
       - name: Build for testing
         run: |
@@ -55,10 +55,9 @@ jobs:
           xcodebuild build-for-testing \
             -project Runvox.xcodeproj \
             -scheme Runvox \
-            -destination "platform=iOS Simulator,name=${{ env.SIMULATOR_NAME }}" \
+            -destination "id=${{ steps.simulator.outputs.udid }}" \
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
-            ONLY_ACTIVE_ARCH=YES \
             | xcbeautify --renderer github-actions
 
       - name: Run unit tests
@@ -67,7 +66,7 @@ jobs:
           xcodebuild test-without-building \
             -project Runvox.xcodeproj \
             -scheme Runvox \
-            -destination "platform=iOS Simulator,name=${{ env.SIMULATOR_NAME }}" \
+            -destination "id=${{ steps.simulator.outputs.udid }}" \
             -configuration Debug \
             -resultBundlePath TestResults.xcresult \
             CODE_SIGNING_ALLOWED=NO \
