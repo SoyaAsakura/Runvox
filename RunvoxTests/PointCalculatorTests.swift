@@ -1,5 +1,5 @@
-import XCTest
 @testable import Runvox
+import XCTest
 
 final class PointCalculatorTests: XCTestCase {
     // MARK: - 仕様確認: 評価ポイント × ランク歩率

@@ -1,5 +1,7 @@
 # Runvox
 
+[![CI](https://github.com/USER/Runvox/actions/workflows/ci.yml/badge.svg)](https://github.com/USER/Runvox/actions/workflows/ci.yml)
+
 マラソン・ジョギング特化型 Q&A プラットフォーム
 
 > 走る人の知恵が、走る人を強くする

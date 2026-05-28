@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+# 同じブランチで連続実行されたら古い方をキャンセル
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  XCODE_VERSION: "16.2"
+  SIMULATOR_NAME: "iPhone 16"
+
+jobs:
+  # ============================================================
+  # ビルド & テスト
+  # ============================================================
+  test:
+    name: Build & Test
+    runs-on: macos-15
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode ${{ env.XCODE_VERSION }}
+        run: |
+          if [ -d "/Applications/Xcode_${{ env.XCODE_VERSION }}.app" ]; then
+            sudo xcode-select -s "/Applications/Xcode_${{ env.XCODE_VERSION }}.app/Contents/Developer"
+          else
+            echo "Xcode_${{ env.XCODE_VERSION }} not found, using default"
+          fi
+          xcodebuild -version
+
+      - name: Install tools
+        run: |
+          brew install xcodegen xcbeautify
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Show available simulators
+        run: |
+          xcrun simctl list devices available | grep -E "iPhone" | head -5
+
+      - name: Build for testing
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing \
+            -project Runvox.xcodeproj \
+            -scheme Runvox \
+            -destination "platform=iOS Simulator,name=${{ env.SIMULATOR_NAME }}" \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            ONLY_ACTIVE_ARCH=YES \
+            | xcbeautify --renderer github-actions
+
+      - name: Run unit tests
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project Runvox.xcodeproj \
+            -scheme Runvox \
+            -destination "platform=iOS Simulator,name=${{ env.SIMULATOR_NAME }}" \
+            -configuration Debug \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            -parallel-testing-enabled YES \
+            | xcbeautify --renderer github-actions
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ github.run_number }}
+          path: TestResults.xcresult
+          retention-days: 7
+
+  # ============================================================
+  # SwiftLint（コード品質チェック）
+  # ============================================================
+  lint:
+    name: SwiftLint
+    runs-on: macos-15
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
