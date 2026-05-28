@@ -130,6 +130,11 @@ xcodebuild test \
 - Firestore セキュリティルールは別途 `firestore.rules` で管理
 - 個人情報（身分証画像）は Firebase Storage + KMS で暗号化保存
 
+## 🤖 自動コードレビュー
+
+PR を作成すると Claude が自動でコードレビューを行います。
+セットアップ手順: [.github/CLAUDE_REVIEW_SETUP.md](.github/CLAUDE_REVIEW_SETUP.md)
+
 ## 📝 ライセンス
 
 Proprietary - 無断複製・再配布禁止
