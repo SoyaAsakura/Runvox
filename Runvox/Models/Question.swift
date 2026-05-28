@@ -1,7 +1,7 @@
 import Foundation
 
 /// 質問本体
-struct Question: Identifiable, Equatable {
+struct Question: Identifiable, Equatable, Hashable {
     let id: String
     let askerId: String
     let askerNickname: String
@@ -17,7 +17,7 @@ struct Question: Identifiable, Equatable {
 }
 
 /// 一覧で表示する回答者の最小情報
-struct AnswererPreview: Equatable {
+struct AnswererPreview: Equatable, Hashable {
     let userId: String
     let nickname: String
     let rank: Rank?

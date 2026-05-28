@@ -20,6 +20,9 @@ struct HomeView: View {
                 ToolbarItem(placement: .topBarTrailing) { notificationButton }
                 ToolbarItem(placement: .topBarTrailing) { signOutButton }
             }
+            .navigationDestination(for: Question.self) { question in
+                QuestionDetailView(question: question)
+            }
             .task { await viewModel.loadIfNeeded() }
             .refreshable { await viewModel.refresh() }
         }
@@ -123,9 +126,10 @@ struct HomeView: View {
         } else {
             VStack(spacing: 12) {
                 ForEach(viewModel.questions) { question in
-                    QuestionCard(question: question) {
-                        // TODO: 質問詳細画面への遷移
+                    NavigationLink(value: question) {
+                        QuestionCard(question: question)
                     }
+                    .buttonStyle(.plain)
                 }
             }
             .padding(.horizontal, 20)
