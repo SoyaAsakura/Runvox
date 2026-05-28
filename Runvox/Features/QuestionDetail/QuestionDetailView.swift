@@ -187,7 +187,10 @@ struct QuestionDetailView: View {
         } else if let error = viewModel.errorMessage {
             errorState(message: error)
         } else if let answer = viewModel.answer {
-            AnswerCard(answer: answer)
+            NavigationLink(value: AnswererRoute(userId: answer.answererId)) {
+                AnswerCard(answer: answer)
+            }
+            .buttonStyle(.plain)
         } else if viewModel.shouldHaveAnswer {
             // status は answered だが取得できなかったケース
             Text("回答を読み込めませんでした")
