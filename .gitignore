@@ -1,0 +1,103 @@
+# =====================================
+# macOS
+# =====================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# =====================================
+# Xcode
+# =====================================
+# Build generated
+build/
+DerivedData/
+
+# User-specific
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+
+# Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+Package.resolved
+
+# =====================================
+# Fastlane
+# =====================================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# =====================================
+# Firebase
+# =====================================
+# Sensitive Firebase config (DO NOT COMMIT)
+GoogleService-Info.plist
+google-services.json
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log
+
+# =====================================
+# Environment / Secrets
+# =====================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cer
+secrets.plist
+
+# =====================================
+# IDE
+# =====================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# =====================================
+# Logs
+# =====================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =====================================
+# Node (for Cloud Functions later)
+# =====================================
+node_modules/
+functions/lib/
+functions/.runtimeconfig.json
