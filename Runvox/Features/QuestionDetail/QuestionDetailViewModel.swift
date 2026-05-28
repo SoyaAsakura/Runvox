@@ -3,7 +3,7 @@ import Foundation
 /// 質問詳細画面の状態管理
 @MainActor
 final class QuestionDetailViewModel: ObservableObject {
-    let question: Question
+    @Published private(set) var question: Question
     @Published private(set) var answer: Answer?
     @Published private(set) var isLoadingAnswer: Bool = false
     @Published private(set) var errorMessage: String?
@@ -34,10 +34,10 @@ final class QuestionDetailViewModel: ObservableObject {
         question.status != .waiting
     }
 
-    /// 質問者は誰でも回答可能（MVP では回答者ロールゲート省略）
-    /// 後で AuthService の currentUser と照合
+    /// 回答がまだ無い時のみ「回答する」CTA を表示
+    /// （MVP では回答者ロールゲートは省略）
     var canShowAnswerCTA: Bool {
-        question.status == .waiting
+        answer == nil && question.status == .waiting
     }
 
     /// 回答済みかつ未評価なら「評価する」CTA
@@ -52,6 +52,14 @@ final class QuestionDetailViewModel: ObservableObject {
     func applyRating(_ stars: Int) {
         guard let current = answer else { return }
         answer = current.with(rating: stars)
+    }
+
+    // MARK: - Posting
+
+    /// 回答投稿後の即時反映: answer をセット & question.status を answered に
+    func applyNewAnswer(_ newAnswer: Answer) {
+        answer = newAnswer
+        question = question.with(status: .answered)
     }
 
     // MARK: - Private

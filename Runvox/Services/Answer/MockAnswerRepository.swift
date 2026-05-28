@@ -18,6 +18,28 @@ final class MockAnswerRepository: AnswerRepository {
         return answers[questionId]
     }
 
+    func postAnswer(
+        questionId: String,
+        answerer: User,
+        body: String
+    ) async throws -> Answer {
+        try await Task.sleep(for: simulatedLatency)
+        // Mock では永続化せず、UUID 付き Answer を返すだけ
+        // 呼び出し側 (QuestionDetailViewModel) が in-memory に反映する想定
+        return Answer(
+            id: UUID().uuidString,
+            questionId: questionId,
+            answererId: answerer.id,
+            answererNickname: answerer.displayName,
+            answererBio: answerer.bio,
+            answererRank: answerer.rank ?? .b,
+            answererStats: nil,
+            body: body,
+            createdAt: Date(),
+            rating: nil
+        )
+    }
+
     // MARK: - Sample data
 
     static let defaultAnswers: [String: Answer] = [

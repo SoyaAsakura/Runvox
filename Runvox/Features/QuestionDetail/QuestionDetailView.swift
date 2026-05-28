@@ -2,9 +2,11 @@ import SwiftUI
 
 /// 質問詳細画面
 struct QuestionDetailView: View {
+    @EnvironmentObject private var auth: AuthService
     @StateObject private var viewModel: QuestionDetailViewModel
     @State private var pendingActionAlert: String?
     @State private var showRatingSheet: Bool = false
+    @State private var showAnswerSheet: Bool = false
     @State private var rewardToast: RewardToast?
 
     init(question: Question) {
@@ -46,6 +48,16 @@ struct QuestionDetailView: View {
                 }
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.hidden)
+            }
+        }
+        .sheet(isPresented: $showAnswerSheet) {
+            if let user = auth.currentUser {
+                PostAnswerView(
+                    question: viewModel.question,
+                    answerer: user
+                ) { newAnswer in
+                    viewModel.applyNewAnswer(newAnswer)
+                }
             }
         }
         .alert(
@@ -283,7 +295,7 @@ struct QuestionDetailView: View {
     private func handleCTA(_ cta: ActionCTA) {
         switch cta {
         case .answer:
-            pendingActionAlert = cta.placeholderMessage
+            showAnswerSheet = true
         case .rate:
             showRatingSheet = true
         }
