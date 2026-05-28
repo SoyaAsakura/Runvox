@@ -28,6 +28,24 @@ final class MockQuestionRepository: QuestionRepository {
         return Array(filtered.prefix(limit))
     }
 
+    func createQuestion(_ draft: NewQuestionDraft) async throws -> Question {
+        try await Task.sleep(for: simulatedLatency)
+        // Mock では永続化せず、UUID 付きで Question を返すだけ
+        // 呼び出し側 (HomeViewModel) が in-memory に追加する想定
+        return Question(
+            id: UUID().uuidString,
+            askerId: draft.askerId,
+            askerNickname: draft.askerNickname,
+            category: draft.category,
+            title: draft.title,
+            body: draft.body,
+            status: .waiting,
+            createdAt: Date(),
+            latestAnswerer: nil,
+            latestRating: nil
+        )
+    }
+
     // MARK: - Sample data
 
     static let defaultSamples: [Question] = [

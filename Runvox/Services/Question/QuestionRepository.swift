@@ -1,5 +1,14 @@
 import Foundation
 
+/// 新規質問投稿用のドラフト
+struct NewQuestionDraft: Equatable {
+    let askerId: String
+    let askerNickname: String
+    let category: QuestionCategory
+    let title: String
+    let body: String
+}
+
 /// 質問データへのアクセス抽象化
 ///
 /// 後で `FirestoreQuestionRepository` に差し替える
@@ -12,4 +21,7 @@ protocol QuestionRepository: Sendable {
         category: QuestionCategory?,
         limit: Int
     ) async throws -> [Question]
+
+    /// 質問を新規作成
+    func createQuestion(_ draft: NewQuestionDraft) async throws -> Question
 }

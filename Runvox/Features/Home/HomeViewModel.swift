@@ -30,6 +30,13 @@ final class HomeViewModel: ObservableObject {
         await load()
     }
 
+    /// 新規投稿された質問を一覧の先頭に追加（楽観的更新）
+    func prepend(_ question: Question) {
+        // 現在のフィルタと不一致なら追加しない
+        if let selectedCategory, question.category != selectedCategory { return }
+        questions.insert(question, at: 0)
+    }
+
     /// カテゴリ選択変更（再フェッチ）
     func selectCategory(_ category: QuestionCategory?) async {
         guard selectedCategory != category else { return }
