@@ -45,6 +45,8 @@ struct MyPageView: View {
                 switch route {
                 case .pointsDashboard(let userId):
                     PointsDashboardView(userId: userId)
+                case .reviewerApplication(let userId):
+                    ReviewerApplicationView(userId: userId)
                 }
             }
             .toolbar {
@@ -183,13 +185,18 @@ struct MyPageView: View {
                 icon: "bell.fill",
                 title: "通知設定"
             ) { pendingActionAlert = "通知設定画面は後続 PR で実装予定です" }
-            if auth.currentUser?.role == .questioner {
+            if auth.currentUser?.role == .questioner,
+               let userId = auth.currentUser?.id {
                 Divider().padding(.leading, 60)
-                SettingsRow(
-                    icon: "checkmark.seal.fill",
-                    title: "回答者として申請",
-                    subtitle: "ランナーコーチ・経験者の方へ"
-                ) { pendingActionAlert = "回答者審査申請フローは後続 PR で実装予定です" }
+                NavigationLink(value: MyPageRoute.reviewerApplication(userId: userId)) {
+                    SettingsRow(
+                        icon: "checkmark.seal.fill",
+                        title: "回答者として申請",
+                        subtitle: "ランナーコーチ・経験者の方へ"
+                    ) {}
+                        .allowsHitTesting(false)
+                }
+                .buttonStyle(.plain)
             }
         }
     }
@@ -283,6 +290,7 @@ struct MyPageView: View {
 /// マイページ内の遷移先
 enum MyPageRoute: Hashable {
     case pointsDashboard(userId: String)
+    case reviewerApplication(userId: String)
 }
 
 #Preview("Signed In B-rank") {
