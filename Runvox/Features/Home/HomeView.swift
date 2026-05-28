@@ -25,6 +25,9 @@ struct HomeView: View {
             .navigationDestination(for: Question.self) { question in
                 QuestionDetailView(question: question)
             }
+            .navigationDestination(for: AnswererRoute.self) { route in
+                AnswererProfileView(userId: route.userId)
+            }
             .sheet(isPresented: $showPostSheet) {
                 if let user = auth.currentUser {
                     PostQuestionView(asker: user) { newQuestion in
