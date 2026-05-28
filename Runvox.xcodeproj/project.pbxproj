@@ -8,13 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		03373DE789A0F9BA9C45C6AD /* PointCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56839A06B9CADB61CD8F0545 /* PointCalculatorTests.swift */; };
+		13EBD9E74C0EDD01A857FA46 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C42697C92E12E93330200C /* EmailLoginView.swift */; };
+		1BCF31C482F2401FC730AA65 /* AuthBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3DC0FA0467D45D873A1A4 /* AuthBackend.swift */; };
 		263338CEBA7E840434488CFC /* RunvoxColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6885788228778087298914EB /* RunvoxColors.swift */; };
+		30AA0A96003FDFCA679CD16E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2BEDECC25233D498BD091 /* AuthService.swift */; };
+		43234273EABA45FE06450B91 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A192D772A530BC3AF38C4FF /* AuthState.swift */; };
+		5164A78B689FC84CADAFC54C /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E256FC162F0F76E55097DF6 /* AuthError.swift */; };
+		5420C98437980FDA3FF2CC8E /* RunvoxButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E6C904EE8C9AB4640AA01 /* RunvoxButtonStyle.swift */; };
 		6070C0186AC1A1381854A225 /* PointCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD137EB047341916C68AE64 /* PointCalculator.swift */; };
 		6323091CE6051A6E80561F21 /* StarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BA4CFB502B251F2DF28CA /* StarRating.swift */; };
+		66EC463A0254D49B1DF7DD52 /* AuthValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E715F2D96A24F3E7A97D8E5 /* AuthValidatorTests.swift */; };
+		75AC25AF8D7887688C6E1B59 /* EmailSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C72A29E5051E9A11CC05CB /* EmailSignupView.swift */; };
 		7674CC7A926CAA621B6DC352 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C42A972388E086F147BB8BD2 /* Assets.xcassets */; };
 		79ED89A36161A34816C5925B /* RunvoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCAD6B62434BBC7C866449 /* RunvoxApp.swift */; };
+		80FDD7ABFAD0F010F72D7F95 /* RunvoxTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD178F06F590498EE48AA6AC /* RunvoxTextField.swift */; };
+		85FFE8361371AE648C528573 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599853A2A3DB34088B4931CB /* AuthServiceTests.swift */; };
+		90EA3D3586C0032FCD97D94B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FB02B081707E556C9F1FB0 /* WelcomeView.swift */; };
 		967647F4CD20C99C1F33178B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2ECC572100538DD958C47B /* ContentView.swift */; };
+		A6746E83B43AB17F6FED0AC5 /* AuthRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2BE049FD8A353527C291FE /* AuthRootView.swift */; };
+		A8139C07ACE861BDC8C63513 /* MockAuthBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455747B85BAA5EA15A837BCD /* MockAuthBackend.swift */; };
+		C860E8A0D378FA8953712B46 /* AuthValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA191FDE6294C682DC3933E /* AuthValidator.swift */; };
 		C8C97B87C14E6F4553CB6D0A /* RankBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D2EC2104FF4175E8802C13 /* RankBadge.swift */; };
+		D18F05802B1296D3EE840880 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4607EA2D1CE036422543309 /* User.swift */; };
+		E35B93FAD2647098C037B789 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C472C53512DDD29AFEF62 /* UserRole.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +45,29 @@
 
 /* Begin PBXFileReference section */
 		0B2ECC572100538DD958C47B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		135C472C53512DDD29AFEF62 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		13FA1E6F598F90184F4661E7 /* RunvoxTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RunvoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D3DC0FA0467D45D873A1A4 /* AuthBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBackend.swift; sourceTree = "<group>"; };
+		455747B85BAA5EA15A837BCD /* MockAuthBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthBackend.swift; sourceTree = "<group>"; };
 		4AFCAD6B62434BBC7C866449 /* RunvoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxApp.swift; sourceTree = "<group>"; };
 		4BD137EB047341916C68AE64 /* PointCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCalculator.swift; sourceTree = "<group>"; };
+		4E715F2D96A24F3E7A97D8E5 /* AuthValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidatorTests.swift; sourceTree = "<group>"; };
 		56839A06B9CADB61CD8F0545 /* PointCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCalculatorTests.swift; sourceTree = "<group>"; };
+		599853A2A3DB34088B4931CB /* AuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTests.swift; sourceTree = "<group>"; };
+		60C42697C92E12E93330200C /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		6885788228778087298914EB /* RunvoxColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxColors.swift; sourceTree = "<group>"; };
+		8E256FC162F0F76E55097DF6 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		8F1BA4CFB502B251F2DF28CA /* StarRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRating.swift; sourceTree = "<group>"; };
+		9A192D772A530BC3AF38C4FF /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		A4607EA2D1CE036422543309 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A6C72A29E5051E9A11CC05CB /* EmailSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignupView.swift; sourceTree = "<group>"; };
+		AEA191FDE6294C682DC3933E /* AuthValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidator.swift; sourceTree = "<group>"; };
+		BD178F06F590498EE48AA6AC /* RunvoxTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxTextField.swift; sourceTree = "<group>"; };
 		C42A972388E086F147BB8BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5C2BEDECC25233D498BD091 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		C75E6C904EE8C9AB4640AA01 /* RunvoxButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxButtonStyle.swift; sourceTree = "<group>"; };
+		DB2BE049FD8A353527C291FE /* AuthRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRootView.swift; sourceTree = "<group>"; };
+		F4FB02B081707E556C9F1FB0 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F5096F096C4172982388D0CF /* Runvox.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Runvox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D2EC2104FF4175E8802C13 /* RankBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,6 +82,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		39101A8D55EACB4F0462D9E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4607EA2D1CE036422543309 /* User.swift */,
+				135C472C53512DDD29AFEF62 /* UserRole.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		492D42B4E7216CE48E7F0D25 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -59,9 +100,35 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		4AC570D3182E5FFE5CD6A336 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				44D3DC0FA0467D45D873A1A4 /* AuthBackend.swift */,
+				8E256FC162F0F76E55097DF6 /* AuthError.swift */,
+				C5C2BEDECC25233D498BD091 /* AuthService.swift */,
+				9A192D772A530BC3AF38C4FF /* AuthState.swift */,
+				AEA191FDE6294C682DC3933E /* AuthValidator.swift */,
+				455747B85BAA5EA15A837BCD /* MockAuthBackend.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		5EE7372E4B8C505313BE51D0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DB2BE049FD8A353527C291FE /* AuthRootView.swift */,
+				60C42697C92E12E93330200C /* EmailLoginView.swift */,
+				A6C72A29E5051E9A11CC05CB /* EmailSignupView.swift */,
+				F4FB02B081707E556C9F1FB0 /* WelcomeView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		7257FAB31809E654907F79F3 /* RunvoxTests */ = {
 			isa = PBXGroup;
 			children = (
+				599853A2A3DB34088B4931CB /* AuthServiceTests.swift */,
+				4E715F2D96A24F3E7A97D8E5 /* AuthValidatorTests.swift */,
 				56839A06B9CADB61CD8F0545 /* PointCalculatorTests.swift */,
 			);
 			path = RunvoxTests;
@@ -71,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				4BD137EB047341916C68AE64 /* PointCalculator.swift */,
+				4AC570D3182E5FFE5CD6A336 /* Auth */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -88,7 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				F8D2EC2104FF4175E8802C13 /* RankBadge.swift */,
+				C75E6C904EE8C9AB4640AA01 /* RunvoxButtonStyle.swift */,
 				6885788228778087298914EB /* RunvoxColors.swift */,
+				BD178F06F590498EE48AA6AC /* RunvoxTextField.swift */,
 				8F1BA4CFB502B251F2DF28CA /* StarRating.swift */,
 			);
 			path = DesignSystem;
@@ -102,11 +172,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C6FB1566F208E062018D729F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				5EE7372E4B8C505313BE51D0 /* Auth */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		D29D1CDDE5B4F62785587B6A /* Runvox */ = {
 			isa = PBXGroup;
 			children = (
 				492D42B4E7216CE48E7F0D25 /* App */,
 				9BFEFDD0BF1B9E4AB4DA5784 /* DesignSystem */,
+				C6FB1566F208E062018D729F /* Features */,
+				39101A8D55EACB4F0462D9E2 /* Models */,
 				BD7921C73F6E9D017A8473E3 /* Resources */,
 				9267841FE9122959B8F19D27 /* Services */,
 			);
@@ -199,6 +279,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85FFE8361371AE648C528573 /* AuthServiceTests.swift in Sources */,
+				66EC463A0254D49B1DF7DD52 /* AuthValidatorTests.swift in Sources */,
 				03373DE789A0F9BA9C45C6AD /* PointCalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,12 +289,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BCF31C482F2401FC730AA65 /* AuthBackend.swift in Sources */,
+				5164A78B689FC84CADAFC54C /* AuthError.swift in Sources */,
+				A6746E83B43AB17F6FED0AC5 /* AuthRootView.swift in Sources */,
+				30AA0A96003FDFCA679CD16E /* AuthService.swift in Sources */,
+				43234273EABA45FE06450B91 /* AuthState.swift in Sources */,
+				C860E8A0D378FA8953712B46 /* AuthValidator.swift in Sources */,
 				967647F4CD20C99C1F33178B /* ContentView.swift in Sources */,
+				13EBD9E74C0EDD01A857FA46 /* EmailLoginView.swift in Sources */,
+				75AC25AF8D7887688C6E1B59 /* EmailSignupView.swift in Sources */,
+				A8139C07ACE861BDC8C63513 /* MockAuthBackend.swift in Sources */,
 				6070C0186AC1A1381854A225 /* PointCalculator.swift in Sources */,
 				C8C97B87C14E6F4553CB6D0A /* RankBadge.swift in Sources */,
 				79ED89A36161A34816C5925B /* RunvoxApp.swift in Sources */,
+				5420C98437980FDA3FF2CC8E /* RunvoxButtonStyle.swift in Sources */,
 				263338CEBA7E840434488CFC /* RunvoxColors.swift in Sources */,
+				80FDD7ABFAD0F010F72D7F95 /* RunvoxTextField.swift in Sources */,
 				6323091CE6051A6E80561F21 /* StarRating.swift in Sources */,
+				D18F05802B1296D3EE840880 /* User.swift in Sources */,
+				E35B93FAD2647098C037B789 /* UserRole.swift in Sources */,
+				90EA3D3586C0032FCD97D94B /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

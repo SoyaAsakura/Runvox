@@ -1,6 +1,21 @@
 import SwiftUI
 
+/// アプリのルート。認証状態に応じて画面を切り替える
 struct ContentView: View {
+    var body: some View {
+        AuthRootView { user in
+            SignedInPlaceholderView(user: user)
+        }
+    }
+}
+
+/// ログイン後に表示する仮の画面（後続 PR でホーム画面に置き換え）
+struct SignedInPlaceholderView: View {
+    @EnvironmentObject private var auth: AuthService
+    let user: User
+
+    @State private var isSigningOut = false
+
     var body: some View {
         ZStack {
             RunvoxColors.bgPage.ignoresSafeArea()
@@ -8,48 +23,53 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 Spacer()
 
-                // Logo
-                HStack(spacing: 0) {
-                    Text("Run")
-                        .font(.system(size: 56, weight: .black))
-                        .foregroundStyle(RunvoxColors.ink)
-                    Text(".")
-                        .font(.system(size: 56, weight: .black))
-                        .foregroundStyle(RunvoxColors.primary)
-                    Text("vox")
-                        .font(.system(size: 56, weight: .black))
-                        .foregroundStyle(RunvoxColors.ink)
-                }
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 56))
+                    .foregroundStyle(RunvoxColors.success)
 
-                Text("走る人の知恵が、走る人を強くする")
-                    .font(.system(size: 13))
+                Text("ようこそ、\(user.nickname) さん 👋")
+                    .font(.system(size: 22, weight: .black))
+                    .foregroundStyle(RunvoxColors.ink)
+
+                Text(user.email)
+                    .font(.system(size: 12))
                     .foregroundStyle(RunvoxColors.subtext)
 
                 Spacer()
 
-                // Demo: Rank badges
-                HStack(spacing: 16) {
-                    RankBadge(rank: .s, size: 56)
-                    RankBadge(rank: .a, size: 56)
-                    RankBadge(rank: .b, size: 56)
+                Text("ここにホーム画面が入ります")
+                    .font(.system(size: 13))
+                    .foregroundStyle(RunvoxColors.subtext)
+
+                Button {
+                    Task { await signOut() }
+                } label: {
+                    if isSigningOut {
+                        ProgressView().tint(.white)
+                    } else {
+                        Text("ログアウト")
+                    }
                 }
-
-                // Demo: Star rating
-                StarRating(rating: 4, size: 24)
-
-                // Demo: Point calculation
-                Text("★4 × Sランク = \(PointCalculator.calculate(stars: 4, rank: .s))pt")
-                    .font(.system(size: 14, weight: .bold, design: .monospaced))
-                    .foregroundStyle(RunvoxColors.primaryDeeper)
-                    .padding(.top, 8)
-
-                Spacer()
+                .buttonStyle(RunvoxPrimaryButtonStyle(isLoading: isSigningOut))
+                .padding(.horizontal, 24)
+                .padding(.bottom, 32)
             }
-            .padding()
         }
+    }
+
+    private func signOut() async {
+        isSigningOut = true
+        defer { isSigningOut = false }
+        try? await auth.signOut()
     }
 }
 
-#Preview {
+#Preview("Signed In") {
     ContentView()
+        .environmentObject(AuthService.previewSignedIn())
+}
+
+#Preview("Signed Out") {
+    ContentView()
+        .environmentObject(AuthService.previewSignedOut())
 }
