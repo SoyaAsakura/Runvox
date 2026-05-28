@@ -27,6 +27,7 @@ struct MyPageView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         profileCard
+                        pointsGroup
                         accountGroup
                         supportGroup
                         appInfoGroup
@@ -40,6 +41,12 @@ struct MyPageView: View {
             }
             .navigationTitle("マイページ")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: MyPageRoute.self) { route in
+                switch route {
+                case .pointsDashboard(let userId):
+                    PointsDashboardView(userId: userId)
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("閉じる") { dismiss() }
@@ -140,6 +147,30 @@ struct MyPageView: View {
     }
 
     // MARK: - Groups
+
+    @ViewBuilder
+    private var pointsGroup: some View {
+        if let userId = auth.currentUser?.id {
+            SettingsGroup("マイポイント") {
+                NavigationLink(value: MyPageRoute.pointsDashboard(userId: userId)) {
+                    SettingsRow(
+                        icon: "chart.line.uptrend.xyaxis",
+                        title: "ポイント残高 / 履歴",
+                        subtitle: pointsSubtitle
+                    ) {}
+                        .allowsHitTesting(false)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    private var pointsSubtitle: String {
+        if auth.currentUser?.role == .answerer {
+            return "回答に評価が付くと加算されます"
+        }
+        return "回答者になると獲得できます"
+    }
 
     private var accountGroup: some View {
         SettingsGroup("アカウント") {
@@ -247,6 +278,11 @@ struct MyPageView: View {
             pendingActionAlert = error.localizedDescription
         }
     }
+}
+
+/// マイページ内の遷移先
+enum MyPageRoute: Hashable {
+    case pointsDashboard(userId: String)
 }
 
 #Preview("Signed In B-rank") {
