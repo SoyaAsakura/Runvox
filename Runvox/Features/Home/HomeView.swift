@@ -4,6 +4,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var auth: AuthService
     @StateObject private var viewModel = HomeViewModel()
+    @State private var showPostSheet = false
 
     var body: some View {
         NavigationStack {
@@ -22,6 +23,13 @@ struct HomeView: View {
             }
             .navigationDestination(for: Question.self) { question in
                 QuestionDetailView(question: question)
+            }
+            .sheet(isPresented: $showPostSheet) {
+                if let user = auth.currentUser {
+                    PostQuestionView(asker: user) { newQuestion in
+                        viewModel.prepend(newQuestion)
+                    }
+                }
             }
             .task { await viewModel.loadIfNeeded() }
             .refreshable { await viewModel.refresh() }
@@ -195,7 +203,7 @@ struct HomeView: View {
 
     private var fab: some View {
         Button {
-            // TODO: 質問投稿画面
+            showPostSheet = true
         } label: {
             HStack(spacing: 8) {
                 Image(systemName: "plus")
