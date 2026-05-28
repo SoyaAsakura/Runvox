@@ -5,6 +5,7 @@ struct HomeView: View {
     @EnvironmentObject private var auth: AuthService
     @StateObject private var viewModel = HomeViewModel()
     @State private var showPostSheet = false
+    @State private var showMyPageSheet = false
 
     var body: some View {
         NavigationStack {
@@ -19,7 +20,7 @@ struct HomeView: View {
                 ToolbarItem(placement: .topBarLeading) { logoTitle }
                 ToolbarItem(placement: .topBarTrailing) { searchButton }
                 ToolbarItem(placement: .topBarTrailing) { notificationButton }
-                ToolbarItem(placement: .topBarTrailing) { signOutButton }
+                ToolbarItem(placement: .topBarTrailing) { myPageButton }
             }
             .navigationDestination(for: Question.self) { question in
                 QuestionDetailView(question: question)
@@ -30,6 +31,10 @@ struct HomeView: View {
                         viewModel.prepend(newQuestion)
                     }
                 }
+            }
+            .sheet(isPresented: $showMyPageSheet) {
+                MyPageView()
+                    .environmentObject(auth)
             }
             .task { await viewModel.loadIfNeeded() }
             .refreshable { await viewModel.refresh() }
@@ -67,14 +72,9 @@ struct HomeView: View {
         }
     }
 
-    /// MVP 中は signOut を直接配置（後で Settings 画面に移動）
-    private var signOutButton: some View {
-        Menu {
-            Button(role: .destructive) {
-                Task { try? await auth.signOut() }
-            } label: {
-                Label("ログアウト", systemImage: "arrow.right.square")
-            }
+    private var myPageButton: some View {
+        Button {
+            showMyPageSheet = true
         } label: {
             Image(systemName: "person.circle")
                 .font(.system(size: 18))
