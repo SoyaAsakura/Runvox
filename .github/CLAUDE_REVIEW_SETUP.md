@@ -1,63 +1,88 @@
-# Claude Code Review セットアップ手順
+# Claude Code Review セットアップ / 使い方
 
-PR 作成時に Claude が自動でコードレビューを行います。
+PR コメントで `@claude` をメンションすると、Claude が PR をレビューします。
 
 ## 仕組み
 
-`.github/workflows/claude-code-review.yml` が PR の `opened` / `synchronize` で起動し、
-[anthropics/claude-code-action](https://github.com/anthropics/claude-code-action) を経由して
-Claude API にレビューを依頼 → 結果が PR コメントとして投稿されます。
+`.github/workflows/claude-code-review.yml` が PR コメントの `@claude` を検知して起動し、
+[anthropics/claude-code-action](https://github.com/anthropics/claude-code-action) 経由で
+Claude（Sonnet 4.5）にレビューを依頼 → 結果が PR コメントとして投稿されます。
+
+## 使い方
+
+PR に対してレビューが欲しいタイミングで、コメント欄にこう書いて投稿：
+
+```
+@claude レビューお願い
+```
+
+数分後（3〜5 分）に Claude のレビューコメントが付きます。
+
+任意の追加指示も可能：
+
+```
+@claude セキュリティ観点重視でレビューして
+```
+
+```
+@claude AuthService.swift だけ詳しく見て
+```
+
+```
+@claude このパフォーマンスどう？
+```
 
 ## 初回セットアップ（リポジトリオーナーが 1 回だけ）
 
-### ステップ 1: Anthropic API キーを取得
-
-1. [console.anthropic.com](https://console.anthropic.com) にログイン
-2. 「API Keys」→ 「Create Key」
-3. キー名: `runvox-github-actions` 推奨
-4. 発行されたキーをコピー（**1 回しか表示されないので注意**）
-
-### ステップ 2: GitHub にシークレットを登録
-
-1. GitHub リポジトリ → Settings → Secrets and variables → Actions
-2. 「New repository secret」
-3. Name: `ANTHROPIC_API_KEY`
-4. Value: ステップ 1 でコピーしたキー
-5. 「Add secret」
-
-### ステップ 3: 動作確認
-
-任意の PR を作成、または既存 PR で「Re-run workflow」を実行。
-数分後に Claude のレビューコメントが付けば成功。
-
-## 代替: 公式 Claude GitHub App を使う
-
-ワークフローを使わず、Anthropic 公式の GitHub App をインストールする方法もあります：
+### 1. Claude Code GitHub App をインストール
 
 1. [github.com/apps/claude](https://github.com/apps/claude) にアクセス
-2. 「Install」→ Runvox リポジトリを選択
-3. App 側で OAuth または API キーを設定
-4. PR コメントで `@claude review` と書くと手動レビュー実行
+2. 「Install」→ リポジトリを選択して許可
 
-→ **このリポジトリではワークフロー方式を採用**（自動レビュー + 設定の透明性）。
+### 2. Anthropic API キー発行
 
-## 料金
+1. [console.anthropic.com](https://console.anthropic.com) にログイン
+2. 「API Keys」→「Create Key」
+3. 発行されたキーをコピー（**1 回しか表示されない**）
 
-| 項目 | 目安 |
+### 3. GitHub にシークレット登録
+
+```bash
+gh secret set ANTHROPIC_API_KEY --repo <owner>/<repo>
+# プロンプトで API キーをペースト
+```
+
+または Settings → Secrets and variables → Actions から手動で。
+
+### 4. クレジット入金
+
+[Billing ページ](https://console.anthropic.com/settings/billing) で $5 程度入金。
+
+### 5. 動作確認
+
+任意の PR で `@claude review` とコメントして、レビューが返ってくれば完了。
+
+## 料金感（Sonnet 使用時）
+
+| PR 規模 | 1 件あたり |
 |---|---|
-| PR 1 件のレビュー（小〜中規模） | $0.05 〜 $0.30 |
-| PR 1 件のレビュー（大規模・複数ファイル） | $0.50 〜 $2.00 |
-| 月 20 PR × 中規模想定 | $1 〜 $6 |
+| 小（100〜300 行・1〜3 ファイル） | $0.03〜$0.06 |
+| 中（300〜800 行） | $0.06〜$0.15 |
+| 大（800〜2,000 行） | $0.15〜$0.40 |
 
-→ 個人プロジェクトなら **月 $5 以内** に収まる想定。
-不安なら [Anthropic Console](https://console.anthropic.com) で使用量上限（月額）を設定可能。
+→ **手動トリガー** なので呼んだ時しか課金されない。
+→ 月 10 回呼んでも **$1〜$3** 程度。
 
 ## カスタマイズ
 
-レビュー観点を変えたい場合は `.github/workflows/claude-code-review.yml` の `prompt:` を編集。
-特定ファイルを除外したい場合は `if:` 条件や `paths-ignore` を活用。
+| 変えたい | 編集箇所 |
+|---|---|
+| モデルを Opus に戻す | `claude_args` を `--model claude-opus-4-1` に |
+| トリガーワード変更 | `trigger_phrase` を `/review` などに |
+| レビュー観点 | `prompt:` を編集 |
+| 自動レビューに戻す | `on:` を `pull_request` 付きに戻す |
 
 ## 一時的に無効化
 
-- ワークフロー全体: GitHub → Actions → 該当ワークフロー → Disable workflow
-- 特定 PR のみ: PR タイトルに `[skip claude]` を含めて、ワークフローの `if:` 条件で除外
+- ワークフロー全体: GitHub → Actions → Claude Code Review → Disable workflow
+- 個別 PR で呼ばない: 単に `@claude` メンションをしない
