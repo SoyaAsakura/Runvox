@@ -1,10 +1,14 @@
 name: Claude Code Review
 
-# PR が開かれた / 更新された時に自動で Claude がレビュー
+# 自動レビューは行わず、PR コメントで "@claude" メンションされた時のみ起動
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
-  # 任意のタイミングでも手動実行可能
+  # PR / Issue へのコメント（PR コメントは内部的に issue_comment 扱い）
+  issue_comment:
+    types: [created]
+  # PR の差分行への inline コメント
+  pull_request_review_comment:
+    types: [created]
+  # 手動実行も可能
   workflow_dispatch:
 
 permissions:
@@ -15,8 +19,14 @@ permissions:
 
 jobs:
   claude-review:
-    # Draft PR はスキップ
-    if: github.event.pull_request.draft == false
+    # "@claude" を含むコメント、または手動起動の時だけ実行
+    if: |
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request != null &&
+       contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' &&
+       contains(github.event.comment.body, '@claude')) ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -30,36 +40,34 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          # レビュー観点（日本語で返答してもらう）
+          # コストを抑えるため Sonnet を使用（Opus と比較して約 1/5）
+          claude_args: '--model claude-sonnet-4-5'
+          # 起動トリガーフレーズ
+          trigger_phrase: '@claude'
           prompt: |
-            この Pull Request を日本語で以下の観点でレビューしてください。
+            この Pull Request を日本語でレビューしてください。
 
             ## プロジェクト前提
             - iOS 16+ / SwiftUI / Swift 5.9
             - バックエンド: Firebase (Auth / Firestore / Storage / FCM) を予定
-            - MVP フェーズなので過剰設計より動作優先
+            - MVP フェーズ。過剰設計より動作優先
 
             ## 重点項目
-            1. **🔴 Critical**（バグ・セキュリティ・データ破損）
-               - async/await の race condition、deadlock
-               - 認証フロー・個人情報・API キーの扱い
-               - SwiftUI の State 管理の誤り
-               - retain cycle / メモリリーク
-            2. **🟡 Important**（保守性・パフォーマンス）
+            1. **🔴 Critical**: バグ / セキュリティ / データ破損リスク
+               - async/await の race condition / deadlock
+               - 認証・個人情報・API キーの扱い
+               - SwiftUI State 管理の誤り / retain cycle
+            2. **🟡 Important**: 保守性 / パフォーマンス
                - エラーハンドリングの網羅性
-               - SwiftUI の View 設計（再描画コスト、再利用性）
-               - テストカバレッジが十分か
-               - 命名・責務分割の妥当性
-            3. **🔵 Suggestion**（軽い改善案）
-               - より良い書き方の提案
-               - 命名や API 設計のリファイン
+               - View 設計（再描画コスト）
+               - テストカバレッジ
+            3. **🔵 Suggestion**: 軽い改善案
 
             ## 出力フォーマット
-            - 先頭に **PR 全体サマリ**（3〜5 行）
-            - **良い点も 1〜2 個** 必ず触れる
-            - 指摘は **重要度バッジ付き** で行番号を添えて具体的に
-            - 修正コード例があると親切
+            - 全体サマリ（3〜5 行）
+            - 良い点も 1〜2 個必ず触れる
+            - 指摘は重要度バッジ付き、行番号添えて具体的に
 
             ## 除外
-            - SwiftLint は CI で別途実行済みのため、純粋なスタイル違反は除外
-            - `*.xcodeproj/` 配下の差分は XcodeGen で再生成されるので軽く触れる程度で OK
+            - SwiftLint は CI で別途実行済み → 純粋なスタイル違反は除外
+            - `*.xcodeproj/` は XcodeGen 生成物 → 軽く触れる程度で OK
