@@ -1,0 +1,65 @@
+name: Claude Code Review
+
+# PR が開かれた / 更新された時に自動で Claude がレビュー
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  # 任意のタイミングでも手動実行可能
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  claude-review:
+    # Draft PR はスキップ
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # レビュー観点（日本語で返答してもらう）
+          prompt: |
+            この Pull Request を日本語で以下の観点でレビューしてください。
+
+            ## プロジェクト前提
+            - iOS 16+ / SwiftUI / Swift 5.9
+            - バックエンド: Firebase (Auth / Firestore / Storage / FCM) を予定
+            - MVP フェーズなので過剰設計より動作優先
+
+            ## 重点項目
+            1. **🔴 Critical**（バグ・セキュリティ・データ破損）
+               - async/await の race condition、deadlock
+               - 認証フロー・個人情報・API キーの扱い
+               - SwiftUI の State 管理の誤り
+               - retain cycle / メモリリーク
+            2. **🟡 Important**（保守性・パフォーマンス）
+               - エラーハンドリングの網羅性
+               - SwiftUI の View 設計（再描画コスト、再利用性）
+               - テストカバレッジが十分か
+               - 命名・責務分割の妥当性
+            3. **🔵 Suggestion**（軽い改善案）
+               - より良い書き方の提案
+               - 命名や API 設計のリファイン
+
+            ## 出力フォーマット
+            - 先頭に **PR 全体サマリ**（3〜5 行）
+            - **良い点も 1〜2 個** 必ず触れる
+            - 指摘は **重要度バッジ付き** で行番号を添えて具体的に
+            - 修正コード例があると親切
+
+            ## 除外
+            - SwiftLint は CI で別途実行済みのため、純粋なスタイル違反は除外
+            - `*.xcodeproj/` 配下の差分は XcodeGen で再生成されるので軽く触れる程度で OK
