@@ -33,4 +33,20 @@ extension Question {
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter.localizedString(for: createdAt, relativeTo: Date())
     }
+
+    /// ステータスだけ差し替えた新しい Question を返す（immutable update）
+    func with(status: QuestionStatus) -> Question {
+        Question(
+            id: id,
+            askerId: askerId,
+            askerNickname: askerNickname,
+            category: category,
+            title: title,
+            body: body,
+            status: status,
+            createdAt: createdAt,
+            latestAnswerer: latestAnswerer,
+            latestRating: latestRating
+        )
+    }
 }

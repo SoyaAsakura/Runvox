@@ -11,6 +11,7 @@
 		0552ACAE4B5583F199940729 /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D948A9E4EA562881560D1D /* RatingViewModel.swift */; };
 		0CEAA16E075C650386BE8C94 /* RatingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF6B3229F527C0AE2571EA /* RatingRepository.swift */; };
 		13EBD9E74C0EDD01A857FA46 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C42697C92E12E93330200C /* EmailLoginView.swift */; };
+		1910C90F4B7273845022585E /* PostAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194AAD50AE8F82C8147FD28 /* PostAnswerViewModel.swift */; };
 		1BCF31C482F2401FC730AA65 /* AuthBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3DC0FA0467D45D873A1A4 /* AuthBackend.swift */; };
 		263338CEBA7E840434488CFC /* RunvoxColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6885788228778087298914EB /* RunvoxColors.swift */; };
 		27EAFDDA636E4A54D869804E /* QuestionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD0F73D04E3FAF9E2EF67D /* QuestionCategory.swift */; };
@@ -60,6 +61,8 @@
 		ED5818B8F91BCFFFA6883307 /* QuestionDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */; };
 		EE64DF86D06556293D6229A5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161621E579E5D4E25C0B328A /* HomeView.swift */; };
 		F3200E2219FA305ED704446E /* RatingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5DEDC877640BCC814BDDE /* RatingSheetView.swift */; };
+		F5B4B6BDEF5294DAC48934F5 /* PostAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D291C2985145754D2D8161 /* PostAnswerView.swift */; };
+		F9036980C13FC5BC448ACBAE /* PostAnswerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1177740B4B714A052F07B /* PostAnswerViewModelTests.swift */; };
 		F98C8DFE1C5009BAFBA9C229 /* QuestionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87569C09A99D5DEC9C3AFFF7 /* QuestionStatus.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +86,7 @@
 		1AD91F920B78F5D1F7D2051E /* QuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailView.swift; sourceTree = "<group>"; };
 		24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailViewModelTests.swift; sourceTree = "<group>"; };
 		2F1891A0A9239BF31BE604A8 /* QuestionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailViewModel.swift; sourceTree = "<group>"; };
+		3194AAD50AE8F82C8147FD28 /* PostAnswerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnswerViewModel.swift; sourceTree = "<group>"; };
 		39D948A9E4EA562881560D1D /* RatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewModel.swift; sourceTree = "<group>"; };
 		3C82AD3870D91BB3292844EE /* CategoryTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTile.swift; sourceTree = "<group>"; };
 		441888126C99F69DEF937D72 /* StatusPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPill.swift; sourceTree = "<group>"; };
@@ -124,8 +128,10 @@
 		C5C2BEDECC25233D498BD091 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C725660F2200BC78B2EFC05D /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		C75E6C904EE8C9AB4640AA01 /* RunvoxButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxButtonStyle.swift; sourceTree = "<group>"; };
+		C7D291C2985145754D2D8161 /* PostAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnswerView.swift; sourceTree = "<group>"; };
 		DB2BE049FD8A353527C291FE /* AuthRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRootView.swift; sourceTree = "<group>"; };
 		EC754DA045A4A91A42340C30 /* PostQuestionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuestionViewModelTests.swift; sourceTree = "<group>"; };
+		EED1177740B4B714A052F07B /* PostAnswerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnswerViewModelTests.swift; sourceTree = "<group>"; };
 		EF7331F684088B907C0B5A2B /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		F4FB02B081707E556C9F1FB0 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F5096F096C4172982388D0CF /* Runvox.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Runvox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +139,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0CB5012767E6AB20EE24D7C0 /* PostAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				C7D291C2985145754D2D8161 /* PostAnswerView.swift */,
+				3194AAD50AE8F82C8147FD28 /* PostAnswerViewModel.swift */,
+			);
+			path = PostAnswer;
+			sourceTree = "<group>";
+		};
 		30778195592FE6BF71862B22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +237,7 @@
 				4E715F2D96A24F3E7A97D8E5 /* AuthValidatorTests.swift */,
 				73B2021B85B108E0A5436C7A /* HomeViewModelTests.swift */,
 				56839A06B9CADB61CD8F0545 /* PointCalculatorTests.swift */,
+				EED1177740B4B714A052F07B /* PostAnswerViewModelTests.swift */,
 				EC754DA045A4A91A42340C30 /* PostQuestionViewModelTests.swift */,
 				24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */,
 				83A296950B35FC69F707304B /* RatingViewModelTests.swift */,
@@ -309,6 +325,7 @@
 			children = (
 				5EE7372E4B8C505313BE51D0 /* Auth */,
 				7FDA7E9A18DBBF8FA8F1DD86 /* Home */,
+				0CB5012767E6AB20EE24D7C0 /* PostAnswer */,
 				8B8C237923A8C3A030550C8A /* PostQuestion */,
 				CAB37C78623650E887D6E943 /* QuestionDetail */,
 				56E0913A5DA217681AD3EB15 /* Rating */,
@@ -429,6 +446,7 @@
 				66EC463A0254D49B1DF7DD52 /* AuthValidatorTests.swift in Sources */,
 				D02F3CAC83B7B1853B57459D /* HomeViewModelTests.swift in Sources */,
 				03373DE789A0F9BA9C45C6AD /* PointCalculatorTests.swift in Sources */,
+				F9036980C13FC5BC448ACBAE /* PostAnswerViewModelTests.swift in Sources */,
 				5A504F7A033E9FE49750B52C /* PostQuestionViewModelTests.swift in Sources */,
 				ED5818B8F91BCFFFA6883307 /* QuestionDetailViewModelTests.swift in Sources */,
 				E0C21FC2175817FCDAC03777 /* RatingViewModelTests.swift in Sources */,
@@ -461,6 +479,8 @@
 				5DD4E459C40AFB8729F0C661 /* MockQuestionRepository.swift in Sources */,
 				3474A07A447E4F548042D5B3 /* MockRatingRepository.swift in Sources */,
 				6070C0186AC1A1381854A225 /* PointCalculator.swift in Sources */,
+				F5B4B6BDEF5294DAC48934F5 /* PostAnswerView.swift in Sources */,
+				1910C90F4B7273845022585E /* PostAnswerViewModel.swift in Sources */,
 				DBD140182AD3026C60385132 /* PostQuestionView.swift in Sources */,
 				699371D14412DAF3A2ED5716 /* PostQuestionViewModel.swift in Sources */,
 				8EBC425F64AB20A3E16BEBB8 /* Question.swift in Sources */,
