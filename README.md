@@ -1,6 +1,6 @@
 # Runvox
 
-[![CI](https://github.com/USER/Runvox/actions/workflows/ci.yml/badge.svg)](https://github.com/USER/Runvox/actions/workflows/ci.yml)
+[![CI](https://github.com/SoyaAsakura/Runvox/actions/workflows/ci.yml/badge.svg)](https://github.com/SoyaAsakura/Runvox/actions/workflows/ci.yml)
 
 マラソン・ジョギング特化型 Q&A プラットフォーム
 
