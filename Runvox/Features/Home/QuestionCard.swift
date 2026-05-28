@@ -1,39 +1,38 @@
 import SwiftUI
 
 /// 質問一覧で使う 1 件分のカード
+///
+/// タップ動作は親側の `NavigationLink` などに任せる（自身は素の View）
 struct QuestionCard: View {
     let question: Question
-    var onTap: () -> Void = {}
 
     var body: some View {
-        Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 0) {
-                metaRow
-                titleText
-                footerRow
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 14)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(RunvoxColors.border, lineWidth: 1)
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay(alignment: .leading) {
-                Rectangle()
-                    .fill(categoryAccent)
-                    .frame(width: 3)
-                    .clipShape(
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 12,
-                            bottomLeadingRadius: 12
-                        )
-                    )
-            }
+        VStack(alignment: .leading, spacing: 0) {
+            metaRow
+            titleText
+            footerRow
         }
-        .buttonStyle(.plain)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.white)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(RunvoxColors.border, lineWidth: 1)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .overlay(alignment: .leading) {
+            Rectangle()
+                .fill(categoryAccent)
+                .frame(width: 3)
+                .clipShape(
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 12,
+                        bottomLeadingRadius: 12
+                    )
+                )
+        }
+        .contentShape(Rectangle())   // 余白も含めて全面タップ可能に
     }
 
     // MARK: - Subviews
