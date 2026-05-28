@@ -46,6 +46,14 @@ final class QuestionDetailViewModel: ObservableObject {
         return answer.rating == nil
     }
 
+    // MARK: - Rating
+
+    /// 評価モーダルから受け取った結果で answer.rating を即時反映
+    func applyRating(_ stars: Int) {
+        guard let current = answer else { return }
+        answer = current.with(rating: stars)
+    }
+
     // MARK: - Private
 
     private func load() async {

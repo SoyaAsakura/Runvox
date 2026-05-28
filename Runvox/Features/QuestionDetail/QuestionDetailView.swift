@@ -4,6 +4,8 @@ import SwiftUI
 struct QuestionDetailView: View {
     @StateObject private var viewModel: QuestionDetailViewModel
     @State private var pendingActionAlert: String?
+    @State private var showRatingSheet: Bool = false
+    @State private var rewardToast: RewardToast?
 
     init(question: Question) {
         _viewModel = StateObject(wrappedValue: QuestionDetailViewModel(question: question))
@@ -24,6 +26,11 @@ struct QuestionDetailView: View {
             }
 
             actionFooter
+
+            if let toast = rewardToast {
+                rewardToastView(toast)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
         }
         .navigationTitle("質問詳細")
         .navigationBarTitleDisplayMode(.inline)
@@ -31,6 +38,16 @@ struct QuestionDetailView: View {
             ToolbarItem(placement: .topBarTrailing) { menuButton }
         }
         .task { await viewModel.loadAnswerIfNeeded() }
+        .sheet(isPresented: $showRatingSheet) {
+            if let answer = viewModel.answer {
+                RatingSheetView(answer: answer) { result in
+                    viewModel.applyRating(result.stars)
+                    showReward(result)
+                }
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.hidden)
+            }
+        }
         .alert(
             "未実装",
             isPresented: Binding(
@@ -41,6 +58,52 @@ struct QuestionDetailView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(pendingActionAlert ?? "")
+        }
+    }
+
+    // MARK: - Reward toast (after successful rating)
+
+    private func showReward(_ result: RatingResult) {
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+            rewardToast = RewardToast(
+                points: result.pointsAwarded,
+                answererName: viewModel.answer?.answererNickname ?? "回答者"
+            )
+        }
+        Task {
+            try? await Task.sleep(for: .seconds(3))
+            withAnimation(.easeOut(duration: 0.3)) {
+                rewardToast = nil
+            }
+        }
+    }
+
+    private func rewardToastView(_ toast: RewardToast) -> some View {
+        VStack {
+            HStack(spacing: 10) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 18))
+                    .foregroundStyle(RunvoxColors.success)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("評価を送信しました")
+                        .font(.system(size: 13, weight: .bold))
+                    Text("\(toast.answererName) さんに +\(toast.points)pt 付与")
+                        .font(.system(size: 11))
+                        .foregroundStyle(RunvoxColors.subtext)
+                }
+                Spacer()
+            }
+            .padding(14)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(RunvoxColors.success.opacity(0.5), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.1), radius: 10, y: 4)
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            Spacer()
         }
     }
 
@@ -190,7 +253,7 @@ struct QuestionDetailView: View {
             VStack {
                 Spacer()
                 Button {
-                    pendingActionAlert = cta.placeholderMessage
+                    handleCTA(cta)
                 } label: {
                     HStack(spacing: 8) {
                         Image(systemName: cta.icon)
@@ -214,6 +277,15 @@ struct QuestionDetailView: View {
                     .ignoresSafeArea()
                 )
             }
+        }
+    }
+
+    private func handleCTA(_ cta: ActionCTA) {
+        switch cta {
+        case .answer:
+            pendingActionAlert = cta.placeholderMessage
+        case .rate:
+            showRatingSheet = true
         }
     }
 
@@ -274,6 +346,13 @@ private enum ActionCTA {
         case .rate:   return "評価モーダルは後続 PR で実装予定です"
         }
     }
+}
+
+// MARK: - Reward toast model
+
+private struct RewardToast: Equatable {
+    let points: Int
+    let answererName: String
 }
 
 #Preview("Waiting") {

@@ -28,3 +28,23 @@ struct AnswererStats: Equatable, Hashable {
     let averageRating: Double
     let answerCount: Int
 }
+
+// MARK: - Mutations
+
+extension Answer {
+    /// 評価値だけ差し替えた新しい Answer を返す（immutable update）
+    func with(rating: Int) -> Answer {
+        Answer(
+            id: id,
+            questionId: questionId,
+            answererId: answererId,
+            answererNickname: answererNickname,
+            answererBio: answererBio,
+            answererRank: answererRank,
+            answererStats: answererStats,
+            body: body,
+            createdAt: createdAt,
+            rating: rating
+        )
+    }
+}
