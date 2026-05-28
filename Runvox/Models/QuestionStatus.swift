@@ -1,7 +1,7 @@
 import Foundation
 
 /// 質問のステータス
-enum QuestionStatus: Equatable {
+enum QuestionStatus: Equatable, Hashable {
     case waiting                              // 回答待ち
     case answered                             // 回答済
     case rallyActive(used: Int, max: Int)     // ラリー中 (例: 1/1)
