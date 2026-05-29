@@ -48,6 +48,17 @@ xcodegen / swiftlint / xcodebuild / git / gh の安全なコマンドは
 → ファイルは `.claude/settings.json`。コマンドを追加したくなったら
 `allow` 配列に `Bash(コマンド:*)` 形式で追記。
 
+### 🪝 Hooks（`.claude/hooks/`）
+
+| Hook | トリガー | 動作 |
+|---|---|---|
+| `swiftlint-on-edit.sh` | `.swift` を Edit/Write/MultiEdit した後 | そのファイルだけ SwiftLint。違反があれば警告を返す（自動修正なし） |
+
+- PostToolUse フックとして `settings.json` に登録済み
+- swiftlint 未インストール環境では静かにスキップ（exit 0）
+- **注意**: `settings.json` を編集したセッションでは即反映されない。
+  `/hooks` メニューを一度開く or 再起動で有効化（新セッションは自動で有効）
+
 ### プロジェクト再生成（必須・新ファイル追加時は毎回）
 ```bash
 cd ~/project/Runvox && xcodegen generate
