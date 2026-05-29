@@ -22,6 +22,8 @@
 		2E7214902128868DE17E30BF /* AnswererProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9B8F24D8D2612020C24E7B /* AnswererProfile.swift */; };
 		30AA0A96003FDFCA679CD16E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2BEDECC25233D498BD091 /* AuthService.swift */; };
 		3474A07A447E4F548042D5B3 /* MockRatingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863E311E892FF1102CAC3E5E /* MockRatingRepository.swift */; };
+		351B526021A59B43693EEE5D /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B231EE49C6F2BFF45CC0D4C3 /* SearchViewModelTests.swift */; };
+		3DD520467675F23FD7642297 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A51C05E0F08F101145CD2 /* SearchViewModel.swift */; };
 		42A56AF550B64A80715F022E /* MockAnswerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DF651C39059B1F2BD60EA5 /* MockAnswerRepository.swift */; };
 		43234273EABA45FE06450B91 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A192D772A530BC3AF38C4FF /* AuthState.swift */; };
 		440811304B76DE2F3A965A61 /* QuestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476404783F9BF197A0C0BD8 /* QuestionCard.swift */; };
@@ -60,6 +62,7 @@
 		91E6FEFAF6E2EEBCAD48C55F /* AnswerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82A541E190097C492E8EBE /* AnswerRepository.swift */; };
 		95918E990EA60C01772E2D38 /* QuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD91F920B78F5D1F7D2051E /* QuestionDetailView.swift */; };
 		967647F4CD20C99C1F33178B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2ECC572100538DD958C47B /* ContentView.swift */; };
+		98897BDB42F047B5610C61B3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1966EEC77E16D347EBB9672 /* SearchView.swift */; };
 		98B4E43DB174CB41E0141816 /* MockNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9502DDC3F2CEC2DF39B9F9 /* MockNotificationRepository.swift */; };
 		9DC223BC3B409CAC11758A71 /* NotificationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65707C206E5725FC0178CF44 /* NotificationListViewModel.swift */; };
 		9EE05DCA6F5E74528F72D7B9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C725660F2200BC78B2EFC05D /* SectionHeader.swift */; };
@@ -153,6 +156,7 @@
 		60C42697C92E12E93330200C /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		645CA62C82D4A5A3526298AD /* MockQuestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuestionRepository.swift; sourceTree = "<group>"; };
 		65707C206E5725FC0178CF44 /* NotificationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListViewModel.swift; sourceTree = "<group>"; };
+		662A51C05E0F08F101145CD2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		6885788228778087298914EB /* RunvoxColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxColors.swift; sourceTree = "<group>"; };
 		6A690A76A578E6C9F7A0672A /* ReviewerApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplicationViewModel.swift; sourceTree = "<group>"; };
 		707A32D849B0C38830827390 /* PointsDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsDashboardViewModel.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 		A86AA0382D82B7B25D0D07D6 /* PointRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointRepository.swift; sourceTree = "<group>"; };
 		AD9B8F24D8D2612020C24E7B /* AnswererProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswererProfile.swift; sourceTree = "<group>"; };
 		AEA191FDE6294C682DC3933E /* AuthValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidator.swift; sourceTree = "<group>"; };
+		B1966EEC77E16D347EBB9672 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		B231EE49C6F2BFF45CC0D4C3 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		BD178F06F590498EE48AA6AC /* RunvoxTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxTextField.swift; sourceTree = "<group>"; };
 		C42A972388E086F147BB8BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5C2BEDECC25233D498BD091 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -358,6 +364,7 @@
 				24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */,
 				83A296950B35FC69F707304B /* RatingViewModelTests.swift */,
 				0B7E3675A0B09AC2728D86D9 /* ReviewerApplicationViewModelTests.swift */,
+				B231EE49C6F2BFF45CC0D4C3 /* SearchViewModelTests.swift */,
 			);
 			path = RunvoxTests;
 			sourceTree = "<group>";
@@ -472,6 +479,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C58C4317DF9BBF3BC42B621F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B1966EEC77E16D347EBB9672 /* SearchView.swift */,
+				662A51C05E0F08F101145CD2 /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		C6FB1566F208E062018D729F /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +502,7 @@
 				CAB37C78623650E887D6E943 /* QuestionDetail */,
 				56E0913A5DA217681AD3EB15 /* Rating */,
 				77AD09369A287C9A7C0F6F0C /* ReviewerApplication */,
+				C58C4317DF9BBF3BC42B621F /* Search */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -619,6 +636,7 @@
 				ED5818B8F91BCFFFA6883307 /* QuestionDetailViewModelTests.swift in Sources */,
 				E0C21FC2175817FCDAC03777 /* RatingViewModelTests.swift in Sources */,
 				C6582427E475436F12A59ED0 /* ReviewerApplicationViewModelTests.swift in Sources */,
+				351B526021A59B43693EEE5D /* SearchViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +709,8 @@
 				5420C98437980FDA3FF2CC8E /* RunvoxButtonStyle.swift in Sources */,
 				263338CEBA7E840434488CFC /* RunvoxColors.swift in Sources */,
 				80FDD7ABFAD0F010F72D7F95 /* RunvoxTextField.swift in Sources */,
+				98897BDB42F047B5610C61B3 /* SearchView.swift in Sources */,
+				3DD520467675F23FD7642297 /* SearchViewModel.swift in Sources */,
 				9EE05DCA6F5E74528F72D7B9 /* SectionHeader.swift in Sources */,
 				0970863FF8CAC6908DC0F05A /* SettingsRow.swift in Sources */,
 				8AE4925B2FAFEE0D7453269D /* StarPicker.swift in Sources */,

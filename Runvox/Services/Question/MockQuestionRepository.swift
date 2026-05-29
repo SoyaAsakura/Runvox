@@ -46,6 +46,17 @@ final class MockQuestionRepository: QuestionRepository {
         )
     }
 
+    func searchQuestions(query: String, limit: Int) async throws -> [Question] {
+        try await Task.sleep(for: simulatedLatency)
+        let lowered = query.lowercased()
+        guard !lowered.isEmpty else { return [] }
+        let matched = sampleQuestions.filter {
+            $0.title.lowercased().contains(lowered)
+                || $0.body.lowercased().contains(lowered)
+        }
+        return Array(matched.prefix(limit))
+    }
+
     // MARK: - Sample data
 
     static let defaultSamples: [Question] = [
