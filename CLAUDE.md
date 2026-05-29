@@ -37,6 +37,17 @@
 
 → 詳細は `.claude/commands/<name>.md` を参照。
 
+### 🔓 権限 allowlist（`.claude/settings.json`）
+
+xcodegen / swiftlint / xcodebuild / git / gh の安全なコマンドは
+**確認ダイアログなしで実行可能**に設定済み。
+
+破壊的操作（`git push --force` / `rm -rf` / `git reset --hard` /
+`gh repo delete`）は **deny で明示ブロック**。
+
+→ ファイルは `.claude/settings.json`。コマンドを追加したくなったら
+`allow` 配列に `Bash(コマンド:*)` 形式で追記。
+
 ### プロジェクト再生成（必須・新ファイル追加時は毎回）
 ```bash
 cd ~/project/Runvox && xcodegen generate
