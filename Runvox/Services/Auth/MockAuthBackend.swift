@@ -67,6 +67,16 @@ final class MockAuthBackend: AuthBackend {
         }
     }
 
+    func updateProfile(_ user: User) async throws -> User {
+        try await Task.sleep(for: simulatedLatency)
+        // ニックネームに "taken" を含むとエラー（重複の動作確認用）
+        if user.nickname.lowercased().contains("taken") {
+            throw AuthError.nicknameAlreadyTaken
+        }
+        // 本番（Firestore）では永続化。Mock は受け取った User をそのまま返す
+        return user
+    }
+
     func signOut() async throws {
         try await Task.sleep(for: .milliseconds(100))
     }

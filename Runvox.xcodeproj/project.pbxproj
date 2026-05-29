@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032175944EE56DDD471FE5E4 /* ProfileEditViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD245603F39EFD2F5761E4 /* ProfileEditViewModelTests.swift */; };
 		03373DE789A0F9BA9C45C6AD /* PointCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56839A06B9CADB61CD8F0545 /* PointCalculatorTests.swift */; };
 		0552ACAE4B5583F199940729 /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D948A9E4EA562881560D1D /* RatingViewModel.swift */; };
 		0970863FF8CAC6908DC0F05A /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC0A4CB21F89291C4FBCDFE /* SettingsRow.swift */; };
@@ -35,6 +36,7 @@
 		5164A78B689FC84CADAFC54C /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E256FC162F0F76E55097DF6 /* AuthError.swift */; };
 		5273EA06570D1A628D56E757 /* AnswererProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739C5D7306488E6857E9E78 /* AnswererProfileView.swift */; };
 		52FEA7E165772247CAC46F72 /* ReviewerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB66F5DCDB5C61C83C9F69 /* ReviewerApplication.swift */; };
+		53037A2BA95CA17513484CB8 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BA7E87545E4A236080729 /* ProfileEditView.swift */; };
 		5420C98437980FDA3FF2CC8E /* RunvoxButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75E6C904EE8C9AB4640AA01 /* RunvoxButtonStyle.swift */; };
 		56A4089D549C507D434F4E4F /* MockPointRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A79257FD4ED42111B4624C2 /* MockPointRepository.swift */; };
 		575BAA7F441361E6B6B80879 /* UserPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B0446566A1F7BB24DA931 /* UserPoints.swift */; };
@@ -60,6 +62,7 @@
 		85FFE8361371AE648C528573 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599853A2A3DB34088B4931CB /* AuthServiceTests.swift */; };
 		86A380990CAED2341211CDD6 /* PointTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C211065394DFB25EF1A9929 /* PointTransaction.swift */; };
 		8AE4925B2FAFEE0D7453269D /* StarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F89BEB5C91E29C268906BB5 /* StarPicker.swift */; };
+		8E223FD870F8311F3D903DAB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3753290B867334E50BD4E7 /* ProfileEditViewModel.swift */; };
 		8EBC425F64AB20A3E16BEBB8 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505EEAA9BD82291E0FCF0B87 /* Question.swift */; };
 		90EA3D3586C0032FCD97D94B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FB02B081707E556C9F1FB0 /* WelcomeView.swift */; };
 		91E6FEFAF6E2EEBCAD48C55F /* AnswerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82A541E190097C492E8EBE /* AnswerRepository.swift */; };
@@ -130,6 +133,7 @@
 		15F5F9EBE6D522FB3007B30E /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		161621E579E5D4E25C0B328A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1739C5D7306488E6857E9E78 /* AnswererProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswererProfileView.swift; sourceTree = "<group>"; };
+		185BA7E87545E4A236080729 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		1AD91F920B78F5D1F7D2051E /* QuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailView.swift; sourceTree = "<group>"; };
 		1C5E0429F3464029B69FEAFE /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
 		22242C686DD4720E32205FB7 /* ReviewerApplicationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplicationRepository.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		662A51C05E0F08F101145CD2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		6885788228778087298914EB /* RunvoxColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxColors.swift; sourceTree = "<group>"; };
 		6A690A76A578E6C9F7A0672A /* ReviewerApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplicationViewModel.swift; sourceTree = "<group>"; };
+		6D3753290B867334E50BD4E7 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		707A32D849B0C38830827390 /* PointsDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsDashboardViewModel.swift; sourceTree = "<group>"; };
 		73B2021B85B108E0A5436C7A /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		7CB5C957F42549DBD9A9BC80 /* CategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChip.swift; sourceTree = "<group>"; };
@@ -209,6 +214,7 @@
 		E3DA8308DB1B82D42BA0DF29 /* AnswererRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswererRoute.swift; sourceTree = "<group>"; };
 		E49F5DABB2764B59B5A11E6D /* PointsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsDashboardView.swift; sourceTree = "<group>"; };
 		EC754DA045A4A91A42340C30 /* PostQuestionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuestionViewModelTests.swift; sourceTree = "<group>"; };
+		ECBD245603F39EFD2F5761E4 /* ProfileEditViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModelTests.swift; sourceTree = "<group>"; };
 		EDE7F09B6735258FDD837C97 /* MockReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReportRepository.swift; sourceTree = "<group>"; };
 		EED1177740B4B714A052F07B /* PostAnswerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnswerViewModelTests.swift; sourceTree = "<group>"; };
 		EF7331F684088B907C0B5A2B /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -272,6 +278,15 @@
 				135C472C53512DDD29AFEF62 /* UserRole.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		391EE30939FFF479F3650BF6 /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				185BA7E87545E4A236080729 /* ProfileEditView.swift */,
+				6D3753290B867334E50BD4E7 /* ProfileEditViewModel.swift */,
+			);
+			path = ProfileEdit;
 			sourceTree = "<group>";
 		};
 		3C96D9A2732D58757A95FE63 /* Point */ = {
@@ -392,6 +407,7 @@
 				2734713F131D466D00351508 /* PointsDashboardViewModelTests.swift */,
 				EED1177740B4B714A052F07B /* PostAnswerViewModelTests.swift */,
 				EC754DA045A4A91A42340C30 /* PostQuestionViewModelTests.swift */,
+				ECBD245603F39EFD2F5761E4 /* ProfileEditViewModelTests.swift */,
 				24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */,
 				83A296950B35FC69F707304B /* RatingViewModelTests.swift */,
 				2E25871C309569F5611876CF /* ReportViewModelTests.swift */,
@@ -532,6 +548,7 @@
 				46EE9E056BAF3D61CD649473 /* Points */,
 				0CB5012767E6AB20EE24D7C0 /* PostAnswer */,
 				8B8C237923A8C3A030550C8A /* PostQuestion */,
+				391EE30939FFF479F3650BF6 /* ProfileEdit */,
 				CAB37C78623650E887D6E943 /* QuestionDetail */,
 				56E0913A5DA217681AD3EB15 /* Rating */,
 				4636CBE66F21E20F90857847 /* Report */,
@@ -667,6 +684,7 @@
 				A226B879471F7ECB53BB5832 /* PointsDashboardViewModelTests.swift in Sources */,
 				F9036980C13FC5BC448ACBAE /* PostAnswerViewModelTests.swift in Sources */,
 				5A504F7A033E9FE49750B52C /* PostQuestionViewModelTests.swift in Sources */,
+				032175944EE56DDD471FE5E4 /* ProfileEditViewModelTests.swift in Sources */,
 				ED5818B8F91BCFFFA6883307 /* QuestionDetailViewModelTests.swift in Sources */,
 				E0C21FC2175817FCDAC03777 /* RatingViewModelTests.swift in Sources */,
 				3893495C758040296788D567 /* ReportViewModelTests.swift in Sources */,
@@ -726,6 +744,8 @@
 				1910C90F4B7273845022585E /* PostAnswerViewModel.swift in Sources */,
 				DBD140182AD3026C60385132 /* PostQuestionView.swift in Sources */,
 				699371D14412DAF3A2ED5716 /* PostQuestionViewModel.swift in Sources */,
+				53037A2BA95CA17513484CB8 /* ProfileEditView.swift in Sources */,
+				8E223FD870F8311F3D903DAB /* ProfileEditViewModel.swift in Sources */,
 				8EBC425F64AB20A3E16BEBB8 /* Question.swift in Sources */,
 				440811304B76DE2F3A965A61 /* QuestionCard.swift in Sources */,
 				27EAFDDA636E4A54D869804E /* QuestionCategory.swift in Sources */,

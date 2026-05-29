@@ -20,6 +20,9 @@ protocol AuthBackend: Sendable {
     /// パスワードリセットメール送信
     func sendPasswordReset(email: String) async throws
 
+    /// プロフィール更新（更新後のユーザーを返す）
+    func updateProfile(_ user: User) async throws -> User
+
     /// ログアウト
     func signOut() async throws
 }

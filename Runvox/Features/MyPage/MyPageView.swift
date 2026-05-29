@@ -47,6 +47,8 @@ struct MyPageView: View {
                     PointsDashboardView(userId: userId)
                 case .reviewerApplication(let userId):
                     ReviewerApplicationView(userId: userId)
+                case .profileEdit:
+                    ProfileEditView(auth: auth)
                 }
             }
             .toolbar {
@@ -176,10 +178,14 @@ struct MyPageView: View {
 
     private var accountGroup: some View {
         SettingsGroup("アカウント") {
-            SettingsRow(
-                icon: "person.fill",
-                title: "プロフィール編集"
-            ) { pendingActionAlert = "プロフィール編集画面は後続 PR で実装予定です" }
+            NavigationLink(value: MyPageRoute.profileEdit) {
+                SettingsRow(
+                    icon: "person.fill",
+                    title: "プロフィール編集"
+                ) {}
+                    .allowsHitTesting(false)
+            }
+            .buttonStyle(.plain)
             Divider().padding(.leading, 60)
             SettingsRow(
                 icon: "bell.fill",
@@ -291,6 +297,7 @@ struct MyPageView: View {
 enum MyPageRoute: Hashable {
     case pointsDashboard(userId: String)
     case reviewerApplication(userId: String)
+    case profileEdit
 }
 
 #Preview("Signed In B-rank") {
