@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// Runvox Firestore セキュリティルール
+//
+// Firebase コンソール or `firebase deploy --only firestore:rules` で適用する。
+// 現状は users コレクションのみ実装。questions / answers などは各 Repository の
+// Firestore 実装 PR で順次ルールを追加する。
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== users =====
+    // - 読み取り: 認証済みユーザーなら誰でも可（回答者プロフィール閲覧のため）
+    // - 作成/更新: 本人のみ
+    // - 削除: 不可（退会は将来の専用フローで対応）
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    // ===== それ以外 =====
+    // 明示的に許可していないコレクションは全拒否。
+    // 新しいコレクション（questions / answers / ratings / points / reports /
+    // notifications / reviewerApplications）は Firestore 実装 PR でルールを追加する。
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
