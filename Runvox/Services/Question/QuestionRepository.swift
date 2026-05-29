@@ -24,4 +24,7 @@ protocol QuestionRepository: Sendable {
 
     /// 質問を新規作成
     func createQuestion(_ draft: NewQuestionDraft) async throws -> Question
+
+    /// キーワードで質問を検索（タイトル + 本文の部分一致）
+    func searchQuestions(query: String, limit: Int) async throws -> [Question]
 }

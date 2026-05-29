@@ -7,6 +7,7 @@ struct HomeView: View {
     @State private var showPostSheet = false
     @State private var showMyPageSheet = false
     @State private var showNotificationSheet = false
+    @State private var showSearchSheet = false
     @State private var unreadNotificationCount = 0
 
     var body: some View {
@@ -48,6 +49,9 @@ struct HomeView: View {
                     }
                 }
             }
+            .sheet(isPresented: $showSearchSheet) {
+                SearchView()
+            }
             .task {
                 await viewModel.loadIfNeeded()
                 await refreshUnreadCount()
@@ -75,7 +79,7 @@ struct HomeView: View {
 
     private var searchButton: some View {
         Button {
-            // TODO: 検索画面
+            showSearchSheet = true
         } label: {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 16, weight: .bold))
