@@ -63,6 +63,20 @@ final class AuthService: ObservableObject {
         try await backend.sendPasswordReset(email: validEmail)
     }
 
+    /// プロフィール更新（nickname / bio / isAnonymous）
+    func updateProfile(nickname: String, bio: String?, isAnonymous: Bool) async throws {
+        guard let current = currentUser else { throw AuthError.notSignedIn }
+        let validNickname = try AuthValidator.validateNickname(nickname).get()
+
+        var updated = current
+        updated.nickname = validNickname
+        updated.bio = bio?.trimmingCharacters(in: .whitespacesAndNewlines)
+        updated.isAnonymous = isAnonymous
+
+        let saved = try await backend.updateProfile(updated)
+        state = .signedIn(saved)
+    }
+
     func signOut() async throws {
         try await backend.signOut()
         state = .signedOut
@@ -73,8 +87,14 @@ final class AuthService: ObservableObject {
 
 extension AuthService {
     /// SwiftUI Preview / テスト用に状態を即座にセット
-    static func previewSignedIn(_ user: User = .preview) -> AuthService {
-        let service = AuthService(backend: MockAuthBackend())
+    static func previewSignedIn(
+        _ user: User = .preview,
+        latency: Duration = .milliseconds(400)
+    ) -> AuthService {
+        let service = AuthService(
+            backend: MockAuthBackend(simulatedLatency: latency),
+            autoRestore: false
+        )
         service.state = .signedIn(user)
         return service
     }
