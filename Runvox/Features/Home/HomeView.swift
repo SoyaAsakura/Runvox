@@ -6,6 +6,8 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var showPostSheet = false
     @State private var showMyPageSheet = false
+    @State private var showNotificationSheet = false
+    @State private var unreadNotificationCount = 0
 
     var body: some View {
         NavigationStack {
@@ -39,9 +41,25 @@ struct HomeView: View {
                 MyPageView()
                     .environmentObject(auth)
             }
-            .task { await viewModel.loadIfNeeded() }
+            .sheet(isPresented: $showNotificationSheet) {
+                if let user = auth.currentUser {
+                    NotificationListView(userId: user.id) {
+                        Task { await refreshUnreadCount() }
+                    }
+                }
+            }
+            .task {
+                await viewModel.loadIfNeeded()
+                await refreshUnreadCount()
+            }
             .refreshable { await viewModel.refresh() }
         }
+    }
+
+    private func refreshUnreadCount() async {
+        guard let userId = auth.currentUser?.id else { return }
+        let count = try? await MockNotificationRepository.shared.unreadCount(userId: userId)
+        unreadNotificationCount = count ?? 0
     }
 
     // MARK: - Top bar
@@ -67,11 +85,20 @@ struct HomeView: View {
 
     private var notificationButton: some View {
         Button {
-            // TODO: 通知一覧
+            showNotificationSheet = true
         } label: {
             Image(systemName: "bell")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundStyle(RunvoxColors.ink)
+                .overlay(alignment: .topTrailing) {
+                    if unreadNotificationCount > 0 {
+                        Circle()
+                            .fill(RunvoxColors.danger)
+                            .frame(width: 8, height: 8)
+                            .overlay(Circle().stroke(RunvoxColors.bgPage, lineWidth: 1.5))
+                            .offset(x: 4, y: -3)
+                    }
+                }
         }
     }
 
