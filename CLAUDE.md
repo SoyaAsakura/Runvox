@@ -23,6 +23,20 @@
 
 ## ⚡ クイックリファレンス（一番よく使う）
 
+### 🎯 スラッシュコマンド（`.claude/commands/`）
+
+| Command | 用途 |
+|---|---|
+| `/verify` | xcodegen + SwiftLint + Test を一気実行 |
+| `/regen` | XcodeGen 再生成だけ（新ファイル追加後に必須） |
+| `/feature <name>` | main 同期 → 新ブランチ作成 |
+| `/pr [タイトル]` | commit + push + PR 作成 |
+| `/merge [PR番号]` | CI 確認 → squash マージ → クリーンアップ |
+| `/sync` | main 同期 + merged ブランチ整理 |
+| `/ship [タイトル]` | verify → pr → CI 待ち → merge までフルコース |
+
+→ 詳細は `.claude/commands/<name>.md` を参照。
+
 ### プロジェクト再生成（必須・新ファイル追加時は毎回）
 ```bash
 cd ~/project/Runvox && xcodegen generate

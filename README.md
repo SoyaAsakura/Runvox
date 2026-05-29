@@ -135,6 +135,20 @@ xcodebuild test \
 PR を作成すると Claude が自動でコードレビューを行います。
 セットアップ手順: [.github/CLAUDE_REVIEW_SETUP.md](.github/CLAUDE_REVIEW_SETUP.md)
 
+## 🎯 Claude Code 用スラッシュコマンド
+
+このプロジェクトには Claude Code 用のショートカットが用意されています。
+
+| Command | 用途 |
+|---|---|
+| `/verify` | xcodegen + SwiftLint + Test を一気実行 |
+| `/feature <name>` | main 同期 → 新ブランチ作成 |
+| `/pr [タイトル]` | commit + push + PR 作成 |
+| `/merge [PR番号]` | CI 確認 → squash マージ → クリーンアップ |
+| `/ship [タイトル]` | verify → pr → CI 待ち → merge までフルコース |
+
+定義は `.claude/commands/` 配下。詳細は [CLAUDE.md](./CLAUDE.md) 参照。
+
 ## 📝 ライセンス
 
 Proprietary - 無断複製・再配布禁止
