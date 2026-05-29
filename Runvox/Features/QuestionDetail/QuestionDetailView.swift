@@ -1,5 +1,9 @@
 import SwiftUI
 
+// swiftlint:disable type_body_length
+// 質問本文・回答・評価・回答投稿・通報・各種トーストを 1 画面に内包するため長い。
+// セクションごとに private var で分離済みで可読性は確保している。
+
 /// 質問詳細画面
 struct QuestionDetailView: View {
     @EnvironmentObject private var auth: AuthService
@@ -7,6 +11,8 @@ struct QuestionDetailView: View {
     @State private var pendingActionAlert: String?
     @State private var showRatingSheet: Bool = false
     @State private var showAnswerSheet: Bool = false
+    @State private var reportTarget: ReportTarget?
+    @State private var showReportSubmittedToast: Bool = false
     @State private var rewardToast: RewardToast?
 
     init(question: Question) {
@@ -31,6 +37,11 @@ struct QuestionDetailView: View {
 
             if let toast = rewardToast {
                 rewardToastView(toast)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+
+            if showReportSubmittedToast {
+                reportToastView
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
@@ -58,6 +69,18 @@ struct QuestionDetailView: View {
                 ) { newAnswer in
                     viewModel.applyNewAnswer(newAnswer)
                 }
+            }
+        }
+        .sheet(item: $reportTarget) { target in
+            if let user = auth.currentUser {
+                ReportSheetView(
+                    targetType: target.type,
+                    targetId: target.id,
+                    reporterId: user.id
+                ) {
+                    showReportConfirmation()
+                }
+                .presentationDetents([.large])
             }
         }
         .alert(
@@ -318,9 +341,16 @@ struct QuestionDetailView: View {
     private var menuButton: some View {
         Menu {
             Button(role: .destructive) {
-                pendingActionAlert = "通報フローは後続 PR で実装予定です"
+                reportTarget = ReportTarget(type: .question, id: viewModel.question.id)
             } label: {
-                Label("通報する", systemImage: "flag")
+                Label("質問を通報", systemImage: "flag")
+            }
+            if let answer = viewModel.answer {
+                Button(role: .destructive) {
+                    reportTarget = ReportTarget(type: .answer, id: answer.id)
+                } label: {
+                    Label("回答を通報", systemImage: "flag")
+                }
             }
             Button {
                 UIPasteboard.general.string = viewModel.question.title
@@ -333,6 +363,57 @@ struct QuestionDetailView: View {
                 .foregroundStyle(RunvoxColors.ink)
         }
     }
+
+    // MARK: - Report confirmation toast
+
+    private func showReportConfirmation() {
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+            showReportSubmittedToast = true
+        }
+        Task {
+            try? await Task.sleep(for: .seconds(3))
+            withAnimation(.easeOut(duration: 0.3)) {
+                showReportSubmittedToast = false
+            }
+        }
+    }
+
+    private var reportToastView: some View {
+        VStack {
+            HStack(spacing: 10) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 18))
+                    .foregroundStyle(RunvoxColors.success)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("通報を受け付けました")
+                        .font(.system(size: 13, weight: .bold))
+                    Text("運営が確認します。ご協力ありがとうございます")
+                        .font(.system(size: 11))
+                        .foregroundStyle(RunvoxColors.subtext)
+                }
+                Spacer()
+            }
+            .padding(14)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(RunvoxColors.success.opacity(0.5), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.1), radius: 10, y: 4)
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            Spacer()
+        }
+    }
+}
+
+// swiftlint:enable type_body_length
+
+/// 通報対象（`.sheet(item:)` 用に Identifiable）
+private struct ReportTarget: Identifiable {
+    let type: ReportTargetType
+    let id: String
 }
 
 // MARK: - Action CTA enum
