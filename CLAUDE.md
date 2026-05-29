@@ -331,20 +331,30 @@ func test_<対象>_<条件>_<期待結果>() async {
 
 ---
 
-## 🔥 Firebase 統合方針（着手前メモ）
+## 🔥 Firebase 統合方針
 
-統合時の手順：
+### ✅ 完了（Auth 統合 PR）
 
-1. SPM で Firebase SDK を追加
-   - `FirebaseAuth` / `FirebaseFirestore` / `FirebaseStorage` / `FirebaseMessaging` / `FirebaseFunctions`
-2. `GoogleService-Info.plist` を `Runvox/Resources/` に配置（.gitignore 済み）
-3. `RunvoxApp.swift` で `FirebaseApp.configure()`
-4. `FirebaseAuthBackend` 実装 → `AuthService(backend: FirebaseAuthBackend())` に切替
-5. 各 Repository を順次 Firestore 実装に差し替え
-6. Firestore セキュリティルール記述（プロジェクト root に `firestore.rules`）
-7. Cloud Functions（`functions/` ディレクトリ）でポイント計算・通知送信
+1. SPM で Firebase SDK 追加済み（`FirebaseAuth` / `FirebaseFirestore`、SDK 11.x）
+2. `GoogleService-Info.plist` は `Runvox/Resources/` に配置（**.gitignore 済み・絶対にコミットしない**。PUBLIC リポジトリ）
+3. `FirebaseBootstrap.configureIfAvailable()` で plist がある時だけ `FirebaseApp.configure()`
+4. `BackendFactory.makeAuthBackend()` が plist の有無で `FirebaseAuthBackend` ↔ `MockAuthBackend` を自動切替
+   → CI / Preview は plist なしで Mock 動作、実機/シミュレータは plist ありで Firebase 動作
+5. `FirebaseAuthBackend`：Auth（メール/パスワード）+ Firestore `users/{uid}` ドキュメントでプロフィール管理
+6. `firestore.rules`：`users` コレクションのルール記述済み（read=認証済み / create・update=本人 / delete=不可）
 
-→ 友達側で Firebase プロジェクト作成と `GoogleService-Info.plist` 受け取りが先決。
+### ⬜ 残タスク
+
+- 各 Repository を順次 Firestore 実装に差し替え（`FirestoreQuestionRepository` など）
+- 残コレクション（questions / answers / ratings / points / reports / notifications / reviewerApplications）の `firestore.rules` 追記
+- Apple Sign In（ASAuthorizationController + nonce）— 現状 `FirebaseAuthBackend.signInWithApple()` は未対応エラー
+- FirebaseStorage（画像添付）/ FirebaseMessaging（FCM）/ Cloud Functions（ポイント計算・通知送信）
+
+### 🔧 友達側（Firebase コンソール）でやること
+
+- Email/Password 認証を有効化
+- Firestore Database を作成
+- `firestore.rules` をデプロイ（`firebase deploy --only firestore:rules`）
 
 ---
 
@@ -369,7 +379,7 @@ func test_<対象>_<条件>_<期待結果>() async {
 - ⬜ 通知設定（OS 連携）
 
 未着手領域：
-- ⬜ Firebase 統合
+- 🔄 Firebase 統合（Auth + users Firestore は完了 / 他 Repository は Mock のまま）
 - ⬜ FCM プッシュ通知
 - ⬜ 通報モーダル
 - ⬜ ラリー機能（追加質問）
