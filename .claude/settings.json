@@ -56,5 +56,19 @@
       "Bash(gh repo delete:*)",
       "Bash(gh repo archive:*)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/swiftlint-on-edit.sh\"",
+            "statusMessage": "SwiftLint チェック中..."
+          }
+        ]
+      }
+    ]
   }
 }
