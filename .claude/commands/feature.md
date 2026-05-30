@@ -1,5 +1,5 @@
 ---
-description: 新規 feature ブランチを安全に作成 (main 同期 + 切替)
+description: 新規 feature ブランチを安全に作成 (develop 同期 + 切替)
 argument-hint: <feature-name> (例: notification-list / search / firebase-auth)
 ---
 
@@ -13,9 +13,9 @@ Runvox の慣習に従って feature ブランチを切る。
    - `git status` で uncommitted な変更を検知
    - 残ってる場合はユーザーに「stash / commit / discard どうしますか？」と確認
 
-2. **main ブランチを最新化**
+2. **develop ブランチを最新化**（このプロジェクトは develop を統合ブランチにする GitFlow ライト運用。feature はここから切る）
    ```bash
-   cd ~/project/Runvox && git checkout main && git pull --ff-only
+   cd ~/project/Runvox && git checkout develop && git pull --ff-only
    ```
 
 3. **新ブランチを作成**

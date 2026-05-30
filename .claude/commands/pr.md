@@ -51,7 +51,7 @@ git push -u origin <現在のブランチ>
 ### Step 3: PR 作成
 
 ```bash
-gh pr create --base main --head <現在のブランチ> \
+gh pr create --base develop --head <現在のブランチ> \
   --title "<タイトル>" \
   --body "<本文>"
 ```

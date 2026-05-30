@@ -29,10 +29,10 @@
 |---|---|
 | `/verify` | xcodegen + SwiftLint + Test を一気実行 |
 | `/regen` | XcodeGen 再生成だけ（新ファイル追加後に必須） |
-| `/feature <name>` | main 同期 → 新ブランチ作成 |
-| `/pr [タイトル]` | commit + push + PR 作成 |
+| `/feature <name>` | develop 同期 → 新ブランチ作成 |
+| `/pr [タイトル]` | commit + push + PR 作成（base develop） |
 | `/merge [PR番号]` | CI 確認 → squash マージ → クリーンアップ |
-| `/sync` | main 同期 + merged ブランチ整理 |
+| `/sync` | develop 同期 + merged ブランチ整理 |
 | `/ship [タイトル]` | verify → pr → CI 待ち → merge までフルコース |
 
 → 詳細は `.claude/commands/<name>.md` を参照。
@@ -233,6 +233,17 @@ RunvoxColors.danger        // #E63946
 
 ## 🔄 PR ワークフロー
 
+### ブランチ戦略（GitFlow ライト）
+```
+main      リリース（本番）ブランチ。常にリリース可能な状態を保つ
+develop   統合ブランチ。feature / fix はここへマージしていく
+feature/* 作業ブランチ。PR の base は develop
+```
+- **feature / fix → PR の base は必ず `develop`**（`main` ではない）
+- 作業ブランチは `develop` の最新から切る
+- `main` へは**リリース時のみ** `develop` → `main` をマージ（まとめて PR）
+- `main` は直接触らない（hotfix を除く）
+
 ### ブランチ命名
 ```
 feature/<name>     新機能
@@ -269,12 +280,13 @@ refactor(<scope>): <概要> リファクタ
 - 関連 mockup あれば ASCII 図で
 
 ### マージ
-- `--squash --delete-branch` で履歴を整理（このプロジェクトの慣習）
-- マージ後はローカル `main` を pull + 不要ブランチを削除
+- feature / fix → **`develop`** に `--squash --delete-branch`（このプロジェクトの慣習）
+- マージ後はローカル `develop` を pull + 不要ブランチを削除
+- リリース時に `develop` → `main`（`main` は常にリリース可能な状態を保つ）
 
 ### CI（GitHub Actions）
 - `Build & Test`（macOS 17 Pro Simulator）+ `SwiftLint` が走る
-- main への push と PR で発火
+- main / develop への push と PR で発火
 - Public リポジトリなので macOS 分は無制限
 - 5 秒で失敗する場合は GitHub 側のランナー/支払い問題（コードではない）
 
@@ -324,8 +336,8 @@ func test_<対象>_<条件>_<期待結果>() async {
 | 並列テスト実行で `AuthServiceTests` が flake | `autoRestore: false` で deterministic に |
 | init の default パラメータで `@MainActor` 違反 | `@StateObject` のプロパティ初期化を使う |
 | User が Hashable じゃないので AnswererProfile が Hashable できない | navigation には `<X>Route` struct を別途用意 |
-| Stacked PR のスカッシュマージで履歴ズレ | 各 PR を `rebase origin/main` で再構築 |
-| 親ブランチ削除で PR が自動 close | 削除前に `gh pr edit <n> --base main` |
+| Stacked PR のスカッシュマージで履歴ズレ | 各 PR を `rebase origin/develop` で再構築 |
+| 親ブランチ削除で PR が自動 close | 削除前に `gh pr edit <n> --base develop` |
 | SwiftLint `large_tuple` (3 要素以上) | `private struct` で名前付き |
 | SwiftLint `type_body_length` | View 大きい場合は `// swiftlint:disable type_body_length` を spot で |
 
