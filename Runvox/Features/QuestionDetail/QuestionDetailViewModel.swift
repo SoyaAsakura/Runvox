@@ -10,7 +10,7 @@ final class QuestionDetailViewModel: ObservableObject {
 
     private let repository: AnswerRepository
 
-    init(question: Question, repository: AnswerRepository = MockAnswerRepository()) {
+    init(question: Question, repository: AnswerRepository = RepositoryFactory.makeAnswerRepository()) {
         self.question = question
         self.repository = repository
     }

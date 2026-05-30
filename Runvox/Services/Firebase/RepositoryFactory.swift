@@ -16,4 +16,12 @@ enum RepositoryFactory {
         }
         return MockQuestionRepository()
     }
+
+    /// 回答リポジトリ
+    static func makeAnswerRepository() -> AnswerRepository {
+        if FirebaseBootstrap.isAvailable {
+            return FirestoreAnswerRepository()
+        }
+        return MockAnswerRepository()
+    }
 }

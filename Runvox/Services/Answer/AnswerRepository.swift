@@ -16,3 +16,20 @@ protocol AnswerRepository: Sendable {
         body: String
     ) async throws -> Answer
 }
+
+/// 回答投稿時のドメインエラー
+enum AnswerError: LocalizedError {
+    /// 同一質問に既に回答が付いている（先着判定に敗北）
+    case alreadyAnswered
+    /// 回答対象の質問が見つからない
+    case questionNotFound
+
+    var errorDescription: String? {
+        switch self {
+        case .alreadyAnswered:
+            return "この質問にはすでに回答が付いています"
+        case .questionNotFound:
+            return "質問が見つかりませんでした"
+        }
+    }
+}
