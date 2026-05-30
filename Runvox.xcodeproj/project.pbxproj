@@ -67,6 +67,7 @@
 		85C705AB9C6E466CFE49C192 /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E672041EC70F2EB0A378BFD /* RepositoryFactory.swift */; };
 		85FFE8361371AE648C528573 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599853A2A3DB34088B4931CB /* AuthServiceTests.swift */; };
 		86A380990CAED2341211CDD6 /* PointTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C211065394DFB25EF1A9929 /* PointTransaction.swift */; };
+		87801352E7E98C037AB91BDB /* FirestoreReviewerApplicationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225152820EF59CA83F263B8 /* FirestoreReviewerApplicationRepository.swift */; };
 		8AE4925B2FAFEE0D7453269D /* StarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F89BEB5C91E29C268906BB5 /* StarPicker.swift */; };
 		8E223FD870F8311F3D903DAB /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3753290B867334E50BD4E7 /* ProfileEditViewModel.swift */; };
 		8EBC425F64AB20A3E16BEBB8 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505EEAA9BD82291E0FCF0B87 /* Question.swift */; };
@@ -78,6 +79,7 @@
 		98897BDB42F047B5610C61B3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1966EEC77E16D347EBB9672 /* SearchView.swift */; };
 		98B4E43DB174CB41E0141816 /* MockNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9502DDC3F2CEC2DF39B9F9 /* MockNotificationRepository.swift */; };
 		9BAD79973CF9D1747D581DF7 /* ReportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11022CFAF9FBC526247381E2 /* ReportSheetView.swift */; };
+		9BDC34620E2936F20AAB169F /* FirestoreNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF17AB1F04C18FA381CB8D1 /* FirestoreNotificationRepository.swift */; };
 		9DC223BC3B409CAC11758A71 /* NotificationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65707C206E5725FC0178CF44 /* NotificationListViewModel.swift */; };
 		9EE05DCA6F5E74528F72D7B9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C725660F2200BC78B2EFC05D /* SectionHeader.swift */; };
 		A1CF74A5E1B199344A5F90B6 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AD65AD34F15FFAB1F9E551 /* NotificationRepository.swift */; };
@@ -110,6 +112,7 @@
 		E0C21FC2175817FCDAC03777 /* RatingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A296950B35FC69F707304B /* RatingViewModelTests.swift */; };
 		E35B93FAD2647098C037B789 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C472C53512DDD29AFEF62 /* UserRole.swift */; };
 		E3872D6E4860BC6A6AF706C9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2EA39383CC3394DF3CF6CC /* UserRepository.swift */; };
+		E9E3EF62BA681254234A186A /* FirestoreReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975A95B78911125F7E73CCF /* FirestoreReportRepository.swift */; };
 		ED5818B8F91BCFFFA6883307 /* QuestionDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */; };
 		EE64DF86D06556293D6229A5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161621E579E5D4E25C0B328A /* HomeView.swift */; };
 		F3200E2219FA305ED704446E /* RatingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5DEDC877640BCC814BDDE /* RatingSheetView.swift */; };
@@ -139,6 +142,7 @@
 		0E672041EC70F2EB0A378BFD /* RepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactory.swift; sourceTree = "<group>"; };
 		0FAB66F5DCDB5C61C83C9F69 /* ReviewerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplication.swift; sourceTree = "<group>"; };
 		11022CFAF9FBC526247381E2 /* ReportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheetView.swift; sourceTree = "<group>"; };
+		1225152820EF59CA83F263B8 /* FirestoreReviewerApplicationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreReviewerApplicationRepository.swift; sourceTree = "<group>"; };
 		135C472C53512DDD29AFEF62 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		13FA1E6F598F90184F4661E7 /* RunvoxTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RunvoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1514E0B522682CF90587A444 /* ApplicationStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStepper.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 		8F1BA4CFB502B251F2DF28CA /* StarRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRating.swift; sourceTree = "<group>"; };
 		99C5DEDC877640BCC814BDDE /* RatingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingSheetView.swift; sourceTree = "<group>"; };
 		9A192D772A530BC3AF38C4FF /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		9AF17AB1F04C18FA381CB8D1 /* FirestoreNotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreNotificationRepository.swift; sourceTree = "<group>"; };
 		9C58720355C748FAE4CA0E0D /* QuestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRepository.swift; sourceTree = "<group>"; };
 		9E96E262F4B74DE36224B610 /* NotificationListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListViewModelTests.swift; sourceTree = "<group>"; };
 		9EFF6B3229F527C0AE2571EA /* RatingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingRepository.swift; sourceTree = "<group>"; };
@@ -213,6 +218,7 @@
 		AEA191FDE6294C682DC3933E /* AuthValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidator.swift; sourceTree = "<group>"; };
 		B1966EEC77E16D347EBB9672 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B231EE49C6F2BFF45CC0D4C3 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
+		B975A95B78911125F7E73CCF /* FirestoreReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreReportRepository.swift; sourceTree = "<group>"; };
 		BB354ED4F33660801AF4D9EB /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		BD178F06F590498EE48AA6AC /* RunvoxTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunvoxTextField.swift; sourceTree = "<group>"; };
 		C16D44BB96BD16855DC36960 /* FirebaseBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseBootstrap.swift; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 		0B7D553018BDFFA5B6619DE7 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				B975A95B78911125F7E73CCF /* FirestoreReportRepository.swift */,
 				EDE7F09B6735258FDD837C97 /* MockReportRepository.swift */,
 				1C5E0429F3464029B69FEAFE /* ReportRepository.swift */,
 			);
@@ -278,6 +285,7 @@
 		120A7F6C595A445C61AB1D14 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				9AF17AB1F04C18FA381CB8D1 /* FirestoreNotificationRepository.swift */,
 				7F9502DDC3F2CEC2DF39B9F9 /* MockNotificationRepository.swift */,
 				42AD65AD34F15FFAB1F9E551 /* NotificationRepository.swift */,
 			);
@@ -353,6 +361,7 @@
 		4742AB23AE720549173D71D7 /* ReviewerApplication */ = {
 			isa = PBXGroup;
 			children = (
+				1225152820EF59CA83F263B8 /* FirestoreReviewerApplicationRepository.swift */,
 				39E21EC634537A9D2ECC0415 /* MockReviewerApplicationRepository.swift */,
 				22242C686DD4720E32205FB7 /* ReviewerApplicationRepository.swift */,
 			);
@@ -778,9 +787,12 @@
 				2503137987CD10CDA5BB67AE /* FirebaseAuthBackend.swift in Sources */,
 				FC2163D2D4DB7B45E72482D4 /* FirebaseBootstrap.swift in Sources */,
 				DB2A5EF7609BE77E053FC777 /* FirestoreAnswerRepository.swift in Sources */,
+				9BDC34620E2936F20AAB169F /* FirestoreNotificationRepository.swift in Sources */,
 				60D429A1F1CEF68C5CC0C4A5 /* FirestorePointRepository.swift in Sources */,
 				7FCA7C4D7988B016ED23A5E6 /* FirestoreQuestionRepository.swift in Sources */,
 				11C0D5B985307CF61542B072 /* FirestoreRatingRepository.swift in Sources */,
+				E9E3EF62BA681254234A186A /* FirestoreReportRepository.swift in Sources */,
+				87801352E7E98C037AB91BDB /* FirestoreReviewerApplicationRepository.swift in Sources */,
 				EE64DF86D06556293D6229A5 /* HomeView.swift in Sources */,
 				63696AE699B131FDBAEE85EC /* HomeViewModel.swift in Sources */,
 				42A56AF550B64A80715F022E /* MockAnswerRepository.swift in Sources */,

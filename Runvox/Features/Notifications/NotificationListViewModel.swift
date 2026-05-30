@@ -13,7 +13,7 @@ final class NotificationListViewModel: ObservableObject {
 
     init(
         userId: String,
-        repository: NotificationRepository = MockNotificationRepository.shared,
+        repository: NotificationRepository = RepositoryFactory.makeNotificationRepository(),
         limit: Int = 50
     ) {
         self.userId = userId

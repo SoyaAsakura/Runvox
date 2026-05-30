@@ -62,7 +62,7 @@ struct HomeView: View {
 
     private func refreshUnreadCount() async {
         guard let userId = auth.currentUser?.id else { return }
-        let count = try? await MockNotificationRepository.shared.unreadCount(userId: userId)
+        let count = try? await RepositoryFactory.makeNotificationRepository().unreadCount(userId: userId)
         unreadNotificationCount = count ?? 0
     }
 

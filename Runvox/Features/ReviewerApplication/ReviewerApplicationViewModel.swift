@@ -22,7 +22,7 @@ final class ReviewerApplicationViewModel: ObservableObject {
 
     init(
         userId: String,
-        repository: ReviewerApplicationRepository = MockReviewerApplicationRepository()
+        repository: ReviewerApplicationRepository = RepositoryFactory.makeReviewerApplicationRepository()
     ) {
         self.userId = userId
         self.repository = repository
