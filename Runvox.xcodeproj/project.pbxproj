@@ -60,7 +60,9 @@
 		7ADD0AC7F6274CE801BD037C /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD29A5E346C8DA681FF76582 /* NotificationListView.swift */; };
 		7E035690BEDDA623CDDEA813 /* PointTransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71F46D7CFA8E68BF62962ED /* PointTransactionRow.swift */; };
 		7EDFF7F67D90218B4AECAE7D /* StatusPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441888126C99F69DEF937D72 /* StatusPill.swift */; };
+		7FCA7C4D7988B016ED23A5E6 /* FirestoreQuestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F938BDF709A5B3FFB83E547F /* FirestoreQuestionRepository.swift */; };
 		80FDD7ABFAD0F010F72D7F95 /* RunvoxTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD178F06F590498EE48AA6AC /* RunvoxTextField.swift */; };
+		85C705AB9C6E466CFE49C192 /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E672041EC70F2EB0A378BFD /* RepositoryFactory.swift */; };
 		85FFE8361371AE648C528573 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599853A2A3DB34088B4931CB /* AuthServiceTests.swift */; };
 		86A380990CAED2341211CDD6 /* PointTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C211065394DFB25EF1A9929 /* PointTransaction.swift */; };
 		8AE4925B2FAFEE0D7453269D /* StarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F89BEB5C91E29C268906BB5 /* StarPicker.swift */; };
@@ -131,6 +133,7 @@
 		0B2ECC572100538DD958C47B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0B7E3675A0B09AC2728D86D9 /* ReviewerApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		0CC0A4CB21F89291C4FBCDFE /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		0E672041EC70F2EB0A378BFD /* RepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactory.swift; sourceTree = "<group>"; };
 		0FAB66F5DCDB5C61C83C9F69 /* ReviewerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplication.swift; sourceTree = "<group>"; };
 		11022CFAF9FBC526247381E2 /* ReportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheetView.swift; sourceTree = "<group>"; };
 		135C472C53512DDD29AFEF62 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 		F4FB02B081707E556C9F1FB0 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F5096F096C4172982388D0CF /* Runvox.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Runvox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D2EC2104FF4175E8802C13 /* RankBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBadge.swift; sourceTree = "<group>"; };
+		F938BDF709A5B3FFB83E547F /* FirestoreQuestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuestionRepository.swift; sourceTree = "<group>"; };
 		FD29A5E346C8DA681FF76582 /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -373,6 +377,7 @@
 		5037B02983E76277C1B50AEB /* Question */ = {
 			isa = PBXGroup;
 			children = (
+				F938BDF709A5B3FFB83E547F /* FirestoreQuestionRepository.swift */,
 				645CA62C82D4A5A3526298AD /* MockQuestionRepository.swift */,
 				9C58720355C748FAE4CA0E0D /* QuestionRepository.swift */,
 			);
@@ -611,6 +616,7 @@
 				2485935E7A2EF831B41997AB /* BackendFactory.swift */,
 				CA899E35618CCCB77D9AE30E /* FirebaseAuthBackend.swift */,
 				C16D44BB96BD16855DC36960 /* FirebaseBootstrap.swift */,
+				0E672041EC70F2EB0A378BFD /* RepositoryFactory.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -762,6 +768,7 @@
 				75AC25AF8D7887688C6E1B59 /* EmailSignupView.swift in Sources */,
 				2503137987CD10CDA5BB67AE /* FirebaseAuthBackend.swift in Sources */,
 				FC2163D2D4DB7B45E72482D4 /* FirebaseBootstrap.swift in Sources */,
+				7FCA7C4D7988B016ED23A5E6 /* FirestoreQuestionRepository.swift in Sources */,
 				EE64DF86D06556293D6229A5 /* HomeView.swift in Sources */,
 				63696AE699B131FDBAEE85EC /* HomeViewModel.swift in Sources */,
 				42A56AF550B64A80715F022E /* MockAnswerRepository.swift in Sources */,
@@ -805,6 +812,7 @@
 				4026D57D0ACE7D494AD16F3B /* ReportRepository.swift in Sources */,
 				9BAD79973CF9D1747D581DF7 /* ReportSheetView.swift in Sources */,
 				2CC1367FA51A8E72B5149C02 /* ReportViewModel.swift in Sources */,
+				85C705AB9C6E466CFE49C192 /* RepositoryFactory.swift in Sources */,
 				52FEA7E165772247CAC46F72 /* ReviewerApplication.swift in Sources */,
 				D74A636BF7E977B8247CF99C /* ReviewerApplicationRepository.swift in Sources */,
 				50C04C7A001C0B38B280828C /* ReviewerApplicationView.swift in Sources */,

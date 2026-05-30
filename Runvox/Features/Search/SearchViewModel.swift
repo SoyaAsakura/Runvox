@@ -16,7 +16,7 @@ final class SearchViewModel: ObservableObject {
     private let repository: QuestionRepository
     private let limit: Int
 
-    init(repository: QuestionRepository = MockQuestionRepository(), limit: Int = 50) {
+    init(repository: QuestionRepository = RepositoryFactory.makeQuestionRepository(), limit: Int = 50) {
         self.repository = repository
         self.limit = limit
     }
