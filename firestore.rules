@@ -55,10 +55,34 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // ===== pointTransactions =====
+    // ポイント付与履歴（userId = 受領者 = 回答者）。
+    // - 読み取り: 本人（受領者）のみ（ダッシュボードで自分の履歴を見る）
+    // - 作成: MVP では認証済みなら許可（評価者が回答者宛に作成するため）。
+    //   ⚠️ 本番は Cloud Functions（Admin）に限定して改ざん防止する。
+    // - 更新 / 削除: 不可（履歴は不変）
+    match /pointTransactions/{txId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null;
+      allow update, delete: if false;
+    }
+
+    // ===== userPoints =====
+    // ポイント残高サマリ（ドキュメント ID = userId）。
+    // - 読み取り: 本人のみ（残高は非公開）
+    // - 作成 / 更新: MVP では認証済みなら許可（評価者が回答者の残高を加算するため）。
+    //   ⚠️ 本番は Cloud Functions（Admin）に限定すること。
+    // - 削除: 不可
+    match /userPoints/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create, update: if request.auth != null;
+      allow delete: if false;
+    }
+
     // ===== それ以外 =====
     // 明示的に許可していないコレクションは全拒否。
-    // 残コレクション（ratings / points / reports /
-    // notifications / reviewerApplications）は Firestore 実装 PR でルールを追加する。
+    // 残コレクション（reports / notifications / reviewerApplications）は
+    // Firestore 実装 PR でルールを追加する。
     match /{document=**} {
       allow read, write: if false;
     }

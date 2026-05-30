@@ -12,6 +12,7 @@
 		0552ACAE4B5583F199940729 /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D948A9E4EA562881560D1D /* RatingViewModel.swift */; };
 		0970863FF8CAC6908DC0F05A /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC0A4CB21F89291C4FBCDFE /* SettingsRow.swift */; };
 		0CEAA16E075C650386BE8C94 /* RatingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF6B3229F527C0AE2571EA /* RatingRepository.swift */; };
+		11C0D5B985307CF61542B072 /* FirestoreRatingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE4E1F8E16CDA1C3F6EDF2 /* FirestoreRatingRepository.swift */; };
 		13EBD9E74C0EDD01A857FA46 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C42697C92E12E93330200C /* EmailLoginView.swift */; };
 		1910C90F4B7273845022585E /* PostAnswerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194AAD50AE8F82C8147FD28 /* PostAnswerViewModel.swift */; };
 		1A7DE2EC1FBC27E764C96199 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5CB57B3F26070549691AA0 /* AppNotification.swift */; };
@@ -46,6 +47,7 @@
 		5C84B66DE82A7FB4221B1D98 /* MockReviewerApplicationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E21EC634537A9D2ECC0415 /* MockReviewerApplicationRepository.swift */; };
 		5DD4E459C40AFB8729F0C661 /* MockQuestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645CA62C82D4A5A3526298AD /* MockQuestionRepository.swift */; };
 		6070C0186AC1A1381854A225 /* PointCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD137EB047341916C68AE64 /* PointCalculator.swift */; };
+		60D429A1F1CEF68C5CC0C4A5 /* FirestorePointRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C20AC24E2CCA233314C4A0 /* FirestorePointRepository.swift */; };
 		6323091CE6051A6E80561F21 /* StarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1BA4CFB502B251F2DF28CA /* StarRating.swift */; };
 		63696AE699B131FDBAEE85EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAF9C2AFBA39D02ED3A685 /* HomeViewModel.swift */; };
 		66EC463A0254D49B1DF7DD52 /* AuthValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E715F2D96A24F3E7A97D8E5 /* AuthValidatorTests.swift */; };
@@ -224,10 +226,12 @@
 		D301291D232E1113C6C209BF /* NotificationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRow.swift; sourceTree = "<group>"; };
 		D71F46D7CFA8E68BF62962ED /* PointTransactionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointTransactionRow.swift; sourceTree = "<group>"; };
 		D74515AD574D73AC16E9EDED /* ReviewerApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplicationView.swift; sourceTree = "<group>"; };
+		D9DE4E1F8E16CDA1C3F6EDF2 /* FirestoreRatingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRatingRepository.swift; sourceTree = "<group>"; };
 		DB2BE049FD8A353527C291FE /* AuthRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRootView.swift; sourceTree = "<group>"; };
 		DC5CB57B3F26070549691AA0 /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
 		E3DA8308DB1B82D42BA0DF29 /* AnswererRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswererRoute.swift; sourceTree = "<group>"; };
 		E49F5DABB2764B59B5A11E6D /* PointsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsDashboardView.swift; sourceTree = "<group>"; };
+		E8C20AC24E2CCA233314C4A0 /* FirestorePointRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePointRepository.swift; sourceTree = "<group>"; };
 		EC754DA045A4A91A42340C30 /* PostQuestionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuestionViewModelTests.swift; sourceTree = "<group>"; };
 		ECBD245603F39EFD2F5761E4 /* ProfileEditViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModelTests.swift; sourceTree = "<group>"; };
 		EDE7F09B6735258FDD837C97 /* MockReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReportRepository.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 		3C96D9A2732D58757A95FE63 /* Point */ = {
 			isa = PBXGroup;
 			children = (
+				E8C20AC24E2CCA233314C4A0 /* FirestorePointRepository.swift */,
 				3A79257FD4ED42111B4624C2 /* MockPointRepository.swift */,
 				A86AA0382D82B7B25D0D07D6 /* PointRepository.swift */,
 			);
@@ -389,6 +394,7 @@
 		526F9B577E0D5C4B13C34C38 /* Rating */ = {
 			isa = PBXGroup;
 			children = (
+				D9DE4E1F8E16CDA1C3F6EDF2 /* FirestoreRatingRepository.swift */,
 				863E311E892FF1102CAC3E5E /* MockRatingRepository.swift */,
 				9EFF6B3229F527C0AE2571EA /* RatingRepository.swift */,
 			);
@@ -772,7 +778,9 @@
 				2503137987CD10CDA5BB67AE /* FirebaseAuthBackend.swift in Sources */,
 				FC2163D2D4DB7B45E72482D4 /* FirebaseBootstrap.swift in Sources */,
 				DB2A5EF7609BE77E053FC777 /* FirestoreAnswerRepository.swift in Sources */,
+				60D429A1F1CEF68C5CC0C4A5 /* FirestorePointRepository.swift in Sources */,
 				7FCA7C4D7988B016ED23A5E6 /* FirestoreQuestionRepository.swift in Sources */,
+				11C0D5B985307CF61542B072 /* FirestoreRatingRepository.swift in Sources */,
 				EE64DF86D06556293D6229A5 /* HomeView.swift in Sources */,
 				63696AE699B131FDBAEE85EC /* HomeViewModel.swift in Sources */,
 				42A56AF550B64A80715F022E /* MockAnswerRepository.swift in Sources */,

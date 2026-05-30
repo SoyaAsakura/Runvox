@@ -14,7 +14,7 @@ final class PointsDashboardViewModel: ObservableObject {
 
     init(
         userId: String,
-        repository: PointRepository = MockPointRepository(),
+        repository: PointRepository = RepositoryFactory.makePointRepository(),
         limit: Int = 20
     ) {
         self.userId = userId

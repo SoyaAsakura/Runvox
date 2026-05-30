@@ -24,4 +24,20 @@ enum RepositoryFactory {
         }
         return MockAnswerRepository()
     }
+
+    /// 評価リポジトリ
+    static func makeRatingRepository() -> RatingRepository {
+        if FirebaseBootstrap.isAvailable {
+            return FirestoreRatingRepository()
+        }
+        return MockRatingRepository()
+    }
+
+    /// ポイントリポジトリ
+    static func makePointRepository() -> PointRepository {
+        if FirebaseBootstrap.isAvailable {
+            return FirestorePointRepository()
+        }
+        return MockPointRepository()
+    }
 }
