@@ -1,6 +1,64 @@
 import SwiftUI
 
-/// 設定系画面の行コンポーネント
+/// 設定系画面の行の「見た目」だけを担うラベル。
+///
+/// `NavigationLink` / `Link` の中身として使うと、リンク自身がタップ領域を持つので
+/// 行全体が正しくタップ可能になる（`contentShape(Rectangle())` 込み）。
+/// タップで処理を実行したいだけなら代わりに `SettingsRow` を使う。
+struct SettingsRowLabel: View {
+    let icon: String
+    let title: String
+    var subtitle: String?
+    var trailingText: String?
+    var showsChevron: Bool = true
+    var destructive: Bool = false
+
+    var body: some View {
+        HStack(spacing: 14) {
+            iconBox
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(destructive ? RunvoxColors.danger : RunvoxColors.ink)
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.system(size: 11))
+                        .foregroundStyle(RunvoxColors.subtext)
+                }
+            }
+            Spacer(minLength: 8)
+            if let trailingText {
+                Text(trailingText)
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundStyle(RunvoxColors.subtext)
+            }
+            if showsChevron {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(RunvoxColors.subtext)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .contentShape(Rectangle())
+    }
+
+    private var iconBox: some View {
+        Image(systemName: icon)
+            .font(.system(size: 14, weight: .semibold))
+            .foregroundStyle(destructive ? RunvoxColors.danger : RunvoxColors.primaryDark)
+            .frame(width: 32, height: 32)
+            .background(destructive ? Color(hex: 0xFDE8EA) : RunvoxColors.bgTint)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+/// タップでアクションを実行する設定行（Button）。
+///
+/// 画面遷移（`NavigationLink` / `Link`）に使う場合は、この `SettingsRow` ではなく
+/// 中身の `SettingsRowLabel` を直接リンクの中に置くこと。`SettingsRow` は Button な
+/// ので、`NavigationLink` の中に入れて `allowsHitTesting(false)` で殺すとリンクごと
+/// タップ不能になる（過去そのバグがあった）。
 struct SettingsRow: View {
     let icon: String
     let title: String
@@ -12,44 +70,16 @@ struct SettingsRow: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 14) {
-                iconBox
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(destructive ? RunvoxColors.danger : RunvoxColors.ink)
-                    if let subtitle {
-                        Text(subtitle)
-                            .font(.system(size: 11))
-                            .foregroundStyle(RunvoxColors.subtext)
-                    }
-                }
-                Spacer(minLength: 8)
-                if let trailingText {
-                    Text(trailingText)
-                        .font(.system(size: 12, design: .monospaced))
-                        .foregroundStyle(RunvoxColors.subtext)
-                }
-                if showsChevron {
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(RunvoxColors.subtext)
-                }
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 14)
-            .contentShape(Rectangle())
+            SettingsRowLabel(
+                icon: icon,
+                title: title,
+                subtitle: subtitle,
+                trailingText: trailingText,
+                showsChevron: showsChevron,
+                destructive: destructive
+            )
         }
         .buttonStyle(.plain)
-    }
-
-    private var iconBox: some View {
-        Image(systemName: icon)
-            .font(.system(size: 14, weight: .semibold))
-            .foregroundStyle(destructive ? RunvoxColors.danger : RunvoxColors.primaryDark)
-            .frame(width: 32, height: 32)
-            .background(destructive ? Color(hex: 0xFDE8EA) : RunvoxColors.bgTint)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
