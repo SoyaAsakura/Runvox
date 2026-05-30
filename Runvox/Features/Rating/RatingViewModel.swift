@@ -11,7 +11,7 @@ final class RatingViewModel: ObservableObject {
 
     private let repository: RatingRepository
 
-    init(answer: Answer, repository: RatingRepository = MockRatingRepository()) {
+    init(answer: Answer, repository: RatingRepository = RepositoryFactory.makeRatingRepository()) {
         self.answer = answer
         self.repository = repository
     }

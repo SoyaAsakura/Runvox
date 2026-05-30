@@ -25,3 +25,20 @@ protocol RatingRepository: Sendable {
         answererRank: Rank
     ) async throws -> RatingResult
 }
+
+/// 評価送信時のドメインエラー
+enum RatingError: LocalizedError {
+    /// 評価値が 1〜5 の範囲外
+    case invalidStars
+    /// 評価対象の回答が見つからない
+    case answerNotFound
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidStars:
+            return "評価値は 1〜5 を指定してください"
+        case .answerNotFound:
+            return "評価対象の回答が見つかりませんでした"
+        }
+    }
+}
