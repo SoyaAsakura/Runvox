@@ -41,7 +41,7 @@ gh pr merge <n> --squash --delete-branch
 
 ```bash
 cd ~/project/Runvox
-git checkout main
+git checkout develop
 git pull --ff-only
 ```
 
@@ -49,7 +49,7 @@ git pull --ff-only
 
 ```bash
 # マージ済みブランチを検出
-git branch --merged main | grep -v "main$" | xargs -r git branch -d
+git branch --merged develop | grep -v "develop$" | grep -v "main$" | xargs -r git branch -d
 ```
 
 または明示的に：
@@ -66,7 +66,7 @@ git remote prune origin
 ### Step 7: 報告
 
 - マージしたコミット SHA
-- 最新 main の git log --oneline (最新 3 件)
+- 最新 develop の git log --oneline (最新 3 件)
 - 残ってる open PR があれば一覧表示
 
 ## 失敗時の対応
