@@ -100,6 +100,7 @@
 		D2E65B60F21CE828A846EC05 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F5F9EBE6D522FB3007B30E /* Report.swift */; };
 		D74A636BF7E977B8247CF99C /* ReviewerApplicationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22242C686DD4720E32205FB7 /* ReviewerApplicationRepository.swift */; };
 		D750FA47D00509D33DE61311 /* AnswererProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3722D389EE07ED4AB6DB8FE4 /* AnswererProfileViewModelTests.swift */; };
+		DB2A5EF7609BE77E053FC777 /* FirestoreAnswerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECC5E948210F07C91762633 /* FirestoreAnswerRepository.swift */; };
 		DBD140182AD3026C60385132 /* PostQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B59E0DDDF247948E2C13C97 /* PostQuestionView.swift */; };
 		DD5DB3875BB72C4AC1F7EC29 /* AnswererProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853791905C6AD93C9F332606 /* AnswererProfileViewModel.swift */; };
 		DE2B38D0287B344A116498E5 /* AnswerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032865457AB5AE9B48945A7A /* AnswerCard.swift */; };
@@ -145,6 +146,7 @@
 		185BA7E87545E4A236080729 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		1AD91F920B78F5D1F7D2051E /* QuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailView.swift; sourceTree = "<group>"; };
 		1C5E0429F3464029B69FEAFE /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
+		1ECC5E948210F07C91762633 /* FirestoreAnswerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAnswerRepository.swift; sourceTree = "<group>"; };
 		22242C686DD4720E32205FB7 /* ReviewerApplicationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewerApplicationRepository.swift; sourceTree = "<group>"; };
 		2485935E7A2EF831B41997AB /* BackendFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendFactory.swift; sourceTree = "<group>"; };
 		24FD0689D8CB393B500BA77F /* QuestionDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailViewModelTests.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				0A82A541E190097C492E8EBE /* AnswerRepository.swift */,
+				1ECC5E948210F07C91762633 /* FirestoreAnswerRepository.swift */,
 				57DF651C39059B1F2BD60EA5 /* MockAnswerRepository.swift */,
 			);
 			path = Answer;
@@ -768,6 +771,7 @@
 				75AC25AF8D7887688C6E1B59 /* EmailSignupView.swift in Sources */,
 				2503137987CD10CDA5BB67AE /* FirebaseAuthBackend.swift in Sources */,
 				FC2163D2D4DB7B45E72482D4 /* FirebaseBootstrap.swift in Sources */,
+				DB2A5EF7609BE77E053FC777 /* FirestoreAnswerRepository.swift in Sources */,
 				7FCA7C4D7988B016ED23A5E6 /* FirestoreQuestionRepository.swift in Sources */,
 				EE64DF86D06556293D6229A5 /* HomeView.swift in Sources */,
 				63696AE699B131FDBAEE85EC /* HomeViewModel.swift in Sources */,

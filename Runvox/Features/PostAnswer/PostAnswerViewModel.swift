@@ -20,7 +20,7 @@ final class PostAnswerViewModel: ObservableObject {
     init(
         question: Question,
         answerer: User,
-        repository: AnswerRepository = MockAnswerRepository()
+        repository: AnswerRepository = RepositoryFactory.makeAnswerRepository()
     ) {
         self.question = question
         self.answerer = answerer

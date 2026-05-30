@@ -38,9 +38,26 @@ service cloud.firestore {
         && request.auth.uid == resource.data.askerId;
     }
 
+    // ===== answers =====
+    // - 読み取り: 認証済みユーザーなら誰でも可（質問詳細での回答表示）
+    // - 作成: 本人（answererId == uid）が、必須フィールドを揃えて作成する場合のみ。
+    //         postAnswer の Transaction 内で questions ドキュメントの update と
+    //         同時に書き込まれる（先着 1 名判定はサーバ側 Transaction で担保）。
+    // - 更新: MVP では認証済みなら許可（★評価の rating 反映用。将来は厳格化）。
+    // - 削除: 不可。
+    match /answers/{answerId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.auth.uid == request.resource.data.answererId
+        && request.resource.data.questionId is string
+        && request.resource.data.body is string;
+      allow update: if request.auth != null;
+      allow delete: if false;
+    }
+
     // ===== それ以外 =====
     // 明示的に許可していないコレクションは全拒否。
-    // 残コレクション（answers / ratings / points / reports /
+    // 残コレクション（ratings / points / reports /
     // notifications / reviewerApplications）は Firestore 実装 PR でルールを追加する。
     match /{document=**} {
       allow read, write: if false;
