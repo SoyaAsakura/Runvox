@@ -157,12 +157,11 @@ struct MyPageView: View {
         if let userId = auth.currentUser?.id {
             SettingsGroup("マイポイント") {
                 NavigationLink(value: MyPageRoute.pointsDashboard(userId: userId)) {
-                    SettingsRow(
+                    SettingsRowLabel(
                         icon: "chart.line.uptrend.xyaxis",
                         title: "ポイント残高 / 履歴",
                         subtitle: pointsSubtitle
-                    ) {}
-                        .allowsHitTesting(false)
+                    )
                 }
                 .buttonStyle(.plain)
             }
@@ -179,11 +178,10 @@ struct MyPageView: View {
     private var accountGroup: some View {
         SettingsGroup("アカウント") {
             NavigationLink(value: MyPageRoute.profileEdit) {
-                SettingsRow(
+                SettingsRowLabel(
                     icon: "person.fill",
                     title: "プロフィール編集"
-                ) {}
-                    .allowsHitTesting(false)
+                )
             }
             .buttonStyle(.plain)
             Divider().padding(.leading, 60)
@@ -195,12 +193,11 @@ struct MyPageView: View {
                let userId = auth.currentUser?.id {
                 Divider().padding(.leading, 60)
                 NavigationLink(value: MyPageRoute.reviewerApplication(userId: userId)) {
-                    SettingsRow(
+                    SettingsRowLabel(
                         icon: "checkmark.seal.fill",
                         title: "回答者として申請",
                         subtitle: "ランナーコーチ・経験者の方へ"
-                    ) {}
-                        .allowsHitTesting(false)
+                    )
                 }
                 .buttonStyle(.plain)
             }
@@ -268,14 +265,11 @@ struct MyPageView: View {
     private func externalLinkRow(icon: String, title: String, url: String) -> some View {
         if let link = URL(string: url) {
             Link(destination: link) {
-                SettingsRow(
-                    icon: icon,
-                    title: title
-                ) {}
-                    .allowsHitTesting(false)
+                SettingsRowLabel(icon: icon, title: title)
             }
+            .buttonStyle(.plain)
         } else {
-            SettingsRow(icon: icon, title: title) {}
+            SettingsRowLabel(icon: icon, title: title)
         }
     }
 
