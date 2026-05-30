@@ -12,7 +12,7 @@ final class HomeViewModel: ObservableObject {
     private let pageLimit: Int
 
     init(
-        repository: QuestionRepository = MockQuestionRepository(),
+        repository: QuestionRepository = RepositoryFactory.makeQuestionRepository(),
         pageLimit: Int = 20
     ) {
         self.repository = repository

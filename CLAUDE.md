@@ -333,20 +333,26 @@ func test_<対象>_<条件>_<期待結果>() async {
 
 ## 🔥 Firebase 統合方針
 
-### ✅ 完了（Auth 統合 PR）
+### ✅ 完了
 
 1. SPM で Firebase SDK 追加済み（`FirebaseAuth` / `FirebaseFirestore`、SDK 11.x）
 2. `GoogleService-Info.plist` は `Runvox/Resources/` に配置（**.gitignore 済み・絶対にコミットしない**。PUBLIC リポジトリ）
 3. `FirebaseBootstrap.configureIfAvailable()` で plist がある時だけ `FirebaseApp.configure()`
-4. `BackendFactory.makeAuthBackend()` が plist の有無で `FirebaseAuthBackend` ↔ `MockAuthBackend` を自動切替
-   → CI / Preview は plist なしで Mock 動作、実機/シミュレータは plist ありで Firebase 動作
-5. `FirebaseAuthBackend`：Auth（メール/パスワード）+ Firestore `users/{uid}` ドキュメントでプロフィール管理
-6. `firestore.rules`：`users` コレクションのルール記述済み（read=認証済み / create・update=本人 / delete=不可）
+4. **ファクトリで Mock ↔ Firestore を自動切替**（plist の有無で判定）
+   - `BackendFactory.makeAuthBackend()`：`FirebaseAuthBackend` ↔ `MockAuthBackend`
+   - `RepositoryFactory.makeQuestionRepository()`：`FirestoreQuestionRepository` ↔ `MockQuestionRepository`
+   - → CI / Preview / ユニットテストは plist なしで Mock 動作、実機/シミュレータは plist ありで Firebase 動作
+   - ⚠️ テストは必ず明示的に Mock を注入すること（ローカルでは plist が同梱されファクトリが Firestore を返すため）
+5. `FirebaseAuthBackend`：Auth（メール/パスワード）+ Firestore `users/{uid}` でプロフィール管理
+6. `FirestoreQuestionRepository`：`questions` コレクション（fetch/create/search）。`QuestionStatus` は
+   `status` 文字列 + `rallyUsed`/`rallyMax` にフラット化して保存。search は直近 200 件のクライアント側フィルタ（MVP）
+7. `firestore.rules`：`users` / `questions` のルール記述済み
+8. `firestore.indexes.json`：`questions` の `category`(ASC)+`createdAt`(DESC) 複合インデックス
 
 ### ⬜ 残タスク
 
-- 各 Repository を順次 Firestore 実装に差し替え（`FirestoreQuestionRepository` など）
-- 残コレクション（questions / answers / ratings / points / reports / notifications / reviewerApplications）の `firestore.rules` 追記
+- 残 Repository を順次 Firestore 実装に差し替え（answers / ratings / points / reports / notifications / reviewerApplications）
+- 各コレクションの `firestore.rules` 追記
 - Apple Sign In（ASAuthorizationController + nonce）— 現状 `FirebaseAuthBackend.signInWithApple()` は未対応エラー
 - FirebaseStorage（画像添付）/ FirebaseMessaging（FCM）/ Cloud Functions（ポイント計算・通知送信）
 
@@ -354,7 +360,7 @@ func test_<対象>_<条件>_<期待結果>() async {
 
 - Email/Password 認証を有効化
 - Firestore Database を作成
-- `firestore.rules` をデプロイ（`firebase deploy --only firestore:rules`）
+- `firebase deploy --only firestore:rules,firestore:indexes` でルールとインデックスをデプロイ
 
 ---
 

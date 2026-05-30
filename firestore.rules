@@ -20,9 +20,27 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // ===== questions =====
+    // - 読み取り: 認証済みユーザーなら誰でも可（一覧 / 詳細 / 検索）
+    // - 作成: 本人（askerId == uid）が、必須フィールドを揃えて作成する場合のみ
+    // - 更新: MVP では認証済みなら許可（回答投稿時に回答者が status / latestAnswerer を
+    //         更新するため）。将来は Cloud Functions 経由に絞って厳格化する。
+    // - 削除: 質問者本人のみ
+    match /questions/{questionId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.auth.uid == request.resource.data.askerId
+        && request.resource.data.title is string
+        && request.resource.data.body is string
+        && request.resource.data.category is string;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null
+        && request.auth.uid == resource.data.askerId;
+    }
+
     // ===== それ以外 =====
     // 明示的に許可していないコレクションは全拒否。
-    // 新しいコレクション（questions / answers / ratings / points / reports /
+    // 残コレクション（answers / ratings / points / reports /
     // notifications / reviewerApplications）は Firestore 実装 PR でルールを追加する。
     match /{document=**} {
       allow read, write: if false;

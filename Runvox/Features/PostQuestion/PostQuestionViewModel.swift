@@ -28,7 +28,7 @@ final class PostQuestionViewModel: ObservableObject {
     private let asker: User
     private let repository: QuestionRepository
 
-    init(asker: User, repository: QuestionRepository = MockQuestionRepository()) {
+    init(asker: User, repository: QuestionRepository = RepositoryFactory.makeQuestionRepository()) {
         self.asker = asker
         self.repository = repository
     }
