@@ -10,3 +10,16 @@ protocol ReviewerApplicationRepository: Sendable {
     /// 新規申請を送信
     func submit(_ draft: ReviewerApplicationDraft) async throws -> ReviewerApplication
 }
+
+/// 回答者審査申請のドメインエラー
+enum ReviewerApplicationError: LocalizedError {
+    /// 入力検証エラー（メッセージ同梱）
+    case validation(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .validation(let message):
+            return message
+        }
+    }
+}

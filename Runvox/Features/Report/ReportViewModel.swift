@@ -19,7 +19,7 @@ final class ReportViewModel: ObservableObject {
         targetType: ReportTargetType,
         targetId: String,
         reporterId: String,
-        repository: ReportRepository = MockReportRepository()
+        repository: ReportRepository = RepositoryFactory.makeReportRepository()
     ) {
         self.targetType = targetType
         self.targetId = targetId

@@ -79,10 +79,45 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // ===== notifications =====
+    // - 読み取り: 本人宛のみ
+    // - 作成: Cloud Functions（Admin）のみ。クライアントからは作らない。
+    // - 更新: 本人のみ（既読化を想定）
+    // - 削除: 不可
+    match /notifications/{notificationId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if false;
+      allow update: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow delete: if false;
+    }
+
+    // ===== reports =====
+    // 通報はモデレーション用。クライアントからの読み取りは不可（Admin のみ）。
+    // - 作成: 本人（reporterId == uid）が必須項目を揃える場合のみ
+    // - 更新 / 削除: 不可
+    match /reports/{reportId} {
+      allow read: if false;
+      allow create: if request.auth != null
+        && request.auth.uid == request.resource.data.reporterId
+        && request.resource.data.targetId is string
+        && request.resource.data.reason is string;
+      allow update, delete: if false;
+    }
+
+    // ===== reviewerApplications =====
+    // - 読み取り: 本人のみ（自分の申請ステータス確認）
+    // - 作成: 本人（userId == uid）が必須項目を揃える場合のみ
+    // - 更新（審査結果の status 変更）/ 削除: 運営（Admin）のみ → クライアントは不可
+    match /reviewerApplications/{applicationId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null
+        && request.auth.uid == request.resource.data.userId
+        && request.resource.data.achievements is string;
+      allow update, delete: if false;
+    }
+
     // ===== それ以外 =====
     // 明示的に許可していないコレクションは全拒否。
-    // 残コレクション（reports / notifications / reviewerApplications）は
-    // Firestore 実装 PR でルールを追加する。
     match /{document=**} {
       allow read, write: if false;
     }
