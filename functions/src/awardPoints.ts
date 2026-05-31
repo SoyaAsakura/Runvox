@@ -45,8 +45,10 @@ export const awardPointsOnRating = onDocumentUpdated(
 
     // 表示用に questionTitle を denormalize（トランザクション外で読んで良い）
     let questionTitle = "";
+    let questionExists = false;
     if (questionId) {
       const qSnap = await db.collection("questions").doc(questionId).get();
+      questionExists = qSnap.exists;
       questionTitle = (qSnap.data()?.title as string) ?? "";
     }
 
@@ -80,6 +82,11 @@ export const awardPointsOnRating = onDocumentUpdated(
         { merge: true },
       );
       tx.update(answerRef, { pointAwarded: true });
+
+      // 質問カード表示用の latestRating を denormalize（クライアントは書かない）
+      if (questionId && questionExists) {
+        tx.update(db.collection("questions").doc(questionId), { latestRating: ratingAfter });
+      }
     });
 
     logger.info(
